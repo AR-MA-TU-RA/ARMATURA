@@ -9,10 +9,17 @@ export default defineConfig({
     tailwindcss(),
   ],
   server: {
-    host: true,
     port: 3000,
-    open: false,
-    allowedHosts: true, // Allows ngrok tunnels and any custom domain in Vite 6
+    strictPort: true,
+    host: '0.0.0.0',
     cors: true,
+    allowedHosts: true,
+    proxy: {
+      '/api': {
+        target: 'http://localhost:5001',
+        changeOrigin: true,
+        secure: false
+      }
+    }
   }
 });
