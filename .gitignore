@@ -1,4 +1,3 @@
-@"
 node_modules/
 dist/
 build/
@@ -8,4 +7,8 @@ build/
 .DS_Store
 .vscode/
 .idea/
-"@ | Out-File -Encoding utf8 .gitignore
+
+# Backend
+server/node_modules/
+server/*.sqlite-shm
+server/*.sqlite-wal
