@@ -1,12 +1,14 @@
 import React from 'react';
 import { X, Bell, Sparkles, Heart, Building, Check, ArrowRight, UserPlus, MessageSquare } from 'lucide-react';
-import { NOTIFICATIONS_LIST, ROOMMATES } from '../data/mockData';
+import { ROOMMATES } from '../data/mockData';
 
 export default function NotificationsDrawer({ 
   isOpen, 
   onClose, 
   onSelectPerson, 
-  onSelectApartment 
+  onSelectApartment,
+  notifications = [],
+  onMarkAllAsRead
 }) {
   if (!isOpen) return null;
 
@@ -29,9 +31,19 @@ export default function NotificationsDrawer({
           </button>
         </div>
 
+        {/* Mark all as read */}
+        <div className="px-4 py-2 border-b border-slate-200 flex justify-end">
+          <button
+            onClick={onMarkAllAsRead}
+            className="text-[11px] font-bold text-blue-600 hover:text-blue-800 cursor-pointer"
+          >
+            Marchează toate ca citite
+          </button>
+        </div>
+
         {/* Notifications List */}
         <div className="p-4 overflow-y-auto space-y-3 flex-1 text-xs">
-          {NOTIFICATIONS_LIST.map((notif) => {
+          {notifications.map((notif) => {
             const person = ROOMMATES.find(p => p.id === notif.personId);
 
             return (
@@ -43,8 +55,13 @@ export default function NotificationsDrawer({
                     onSelectPerson(person);
                   }
                 }}
-                className="p-3.5 rounded-2xl border border-slate-200/80 hover:border-blue-300 hover:bg-blue-50/40 transition cursor-pointer bg-white shadow-2xs space-y-1.5"
+                className={`relative p-3.5 rounded-2xl border border-slate-200/80 hover:border-blue-300 hover:bg-blue-50/40 transition cursor-pointer shadow-2xs space-y-1.5 ${
+                  notif.read ? 'bg-white' : 'bg-blue-50/60 border-blue-200'
+                }`}
               >
+                {!notif.read && (
+                  <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-blue-600" />
+                )}
                 <div className="flex items-center justify-between">
                   <span className={`text-[10px] font-black px-2 py-0.5 rounded-md uppercase tracking-wider ${
                     notif.type === 'match' 
