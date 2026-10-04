@@ -1,13 +1,14 @@
 import React, { useState, useMemo } from 'react';
 import { 
   Home, MapPin, Euro, Calendar, Users, Bed, Maximize2, 
-  Check, Filter, ArrowUpDown, Map as MapIcon, List, Eye, Sparkles, X, Cigarette, Baby
+  Check, Filter, ArrowUpDown, Eye, Sparkles, X, Cigarette, Baby
 } from 'lucide-react';
-import { APARTMENTS, DISTRICTS, TRANSLATIONS } from '../data/mockData';
+import { APARTMENTS, DISTRICTS, TRANSLATIONS, getLocalizedContent, getLocalizedField } from '../data/mockData';
 
 export default function ApartmentsPage({ 
   onSelectApartment, 
   onOpenPublishModal,
+  apartmentsList,
   language = 'en'
 }) {
   const t = TRANSLATIONS[language] || TRANSLATIONS.en;
@@ -20,11 +21,11 @@ export default function ApartmentsPage({
   const [childrenFriendly, setChildrenFriendly] = useState(false);
   const [furnished, setFurnished] = useState(false);
   const [sortBy, setSortBy] = useState('relevance');
-  const [viewMode, setViewMode] = useState('list'); // 'list' | 'map'
-  const [selectedMapApt, setSelectedMapApt] = useState(null);
+
+  const sourceApartments = apartmentsList && apartmentsList.length > 0 ? apartmentsList : APARTMENTS;
 
   const filteredApartments = useMemo(() => {
-    return APARTMENTS.filter(apt => {
+    return sourceApartments.filter(apt => {
       if (selectedDistrict && apt.district !== selectedDistrict) return false;
       if (maxPrice && apt.pricePerPerson > maxPrice) return false;
       if (rooms && apt.rooms < Number(rooms)) return false;
@@ -38,7 +39,7 @@ export default function ApartmentsPage({
       if (sortBy === 'price-desc') return b.pricePerPerson - a.pricePerPerson;
       return 0;
     });
-  }, [selectedDistrict, maxPrice, rooms, petFriendly, smokerFriendly, childrenFriendly, furnished, sortBy]);
+  }, [sourceApartments, selectedDistrict, maxPrice, rooms, petFriendly, smokerFriendly, childrenFriendly, furnished, sortBy]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -59,34 +60,7 @@ export default function ApartmentsPage({
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          {/* List / Map view toggle */}
-          <div className="flex items-center border border-slate-200 dark:border-slate-800 rounded-2xl bg-slate-100 dark:bg-slate-800 p-0.5">
-            <button
-              onClick={() => setViewMode('list')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer flex items-center gap-1.5 ${
-                viewMode === 'list'
-                  ? 'bg-white dark:bg-slate-900 text-blue-700 dark:text-blue-400 shadow-xs'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
-              }`}
-            >
-              <List className="w-3.5 h-3.5" />
-              <span>{t.viewList}</span>
-            </button>
-
-            <button
-              onClick={() => setViewMode('map')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer flex items-center gap-1.5 ${
-                viewMode === 'map'
-                  ? 'bg-white dark:bg-slate-900 text-blue-700 dark:text-blue-400 shadow-xs'
-                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900'
-              }`}
-            >
-              <MapIcon className="w-3.5 h-3.5" />
-              <span>{t.viewMap}</span>
-            </button>
-          </div>
-
+        <div>
           <button
             onClick={onOpenPublishModal}
             className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-sm transition cursor-pointer"
@@ -194,123 +168,18 @@ export default function ApartmentsPage({
         </div>
       </div>
 
-      {/* VIEW: MAP VIEW */}
-      {viewMode === 'map' ? (
-        <div className="relative bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-3xl overflow-hidden shadow-sm h-[600px] mb-8">
-          
-          <div className="w-full h-full relative bg-[#e5e9ec] dark:bg-slate-950 overflow-hidden flex items-center justify-center">
-            
-            {/* Map styling */}
-            <div className="absolute inset-0 opacity-40 bg-[radial-gradient(#94a3b8_1px,transparent_1px)] [background-size:16px_16px]" />
-            <div className="absolute top-1/4 left-1/3 w-96 h-12 bg-blue-200/50 dark:bg-blue-900/30 rounded-full blur-xl transform -rotate-12" />
-            <div className="absolute bottom-1/3 right-1/4 w-80 h-10 bg-emerald-200/50 dark:bg-emerald-900/30 rounded-full blur-xl" />
-
-            {/* District Labels */}
-            <div className="absolute top-16 left-28 text-slate-400 dark:text-slate-600 font-extrabold text-sm tracking-widest uppercase">
-              Rîșcani
-            </div>
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-600 font-extrabold text-base tracking-widest uppercase">
-              Centru
-            </div>
-            <div className="absolute bottom-20 right-32 text-slate-400 dark:text-slate-600 font-extrabold text-sm tracking-widest uppercase">
-              Botanica
-            </div>
-            <div className="absolute top-36 left-16 text-slate-400 dark:text-slate-600 font-extrabold text-sm tracking-widest uppercase">
-              Buiucani
-            </div>
-            <div className="absolute top-24 right-20 text-slate-400 dark:text-slate-600 font-extrabold text-sm tracking-widest uppercase">
-              Ciocana
-            </div>
-
-            {/* Clickable Map Pins */}
-            {filteredApartments.map((apt, index) => {
-              const pinPositions = [
-                { top: '65%', left: '68%' },
-                { top: '35%', left: '22%' },
-                { top: '48%', left: '50%' },
-                { top: '22%', left: '52%' },
-                { top: '26%', left: '76%' },
-                { top: '78%', left: '42%' },
-                { top: '44%', left: '46%' },
-                { top: '40%', left: '28%' }
-              ];
-              const pos = pinPositions[index % pinPositions.length];
-              const isSelected = selectedMapApt?.id === apt.id;
-
-              return (
-                <div
-                  key={apt.id}
-                  style={{ top: pos.top, left: pos.left }}
-                  className="absolute transform -translate-x-1/2 -translate-y-1/2 z-20 cursor-pointer"
-                  onClick={() => setSelectedMapApt(apt)}
-                >
-                  <div className={`px-2.5 py-1 rounded-full font-black text-xs shadow-md transition-all flex items-center gap-1 ${
-                    isSelected
-                      ? 'bg-blue-600 text-white scale-110 ring-4 ring-blue-300'
-                      : 'bg-white dark:bg-slate-900 text-slate-900 dark:text-white hover:bg-blue-600 hover:text-white border border-slate-200 dark:border-slate-700'
-                  }`}>
-                    <span>€{apt.pricePerPerson}</span>
-                    <span className="text-[10px] font-normal opacity-70">/p</span>
-                  </div>
-                </div>
-              );
-            })}
-
-            {/* Selected Apartment Card Popup */}
-            {selectedMapApt && (
-              <div className="absolute bottom-6 left-6 right-6 sm:right-auto sm:w-96 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-4 shadow-2xl z-30 animate-in slide-in-from-bottom duration-200">
-                <div className="flex items-start justify-between gap-3 mb-2">
-                  <div className="flex items-center gap-2">
-                    <img
-                      src={selectedMapApt.images[0]}
-                      alt={selectedMapApt.title}
-                      className="w-16 h-16 rounded-2xl object-cover shrink-0"
-                    />
-                    <div>
-                      <h4 className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm line-clamp-1">
-                        {selectedMapApt.title}
-                      </h4>
-                      <div className="text-[11px] text-slate-500 dark:text-slate-400 flex items-center gap-1">
-                        <MapPin className="w-3 h-3 text-blue-600" />
-                        <span>{selectedMapApt.district}</span>
-                        <span>•</span>
-                        <span>{selectedMapApt.rooms} {t.roomsCount}</span>
-                      </div>
-                      <div className="text-xs font-black text-blue-700 dark:text-blue-400 mt-1">
-                        €{selectedMapApt.pricePerPerson} {t.perPerson}
-                      </div>
-                    </div>
-                  </div>
-                  <button
-                    onClick={() => setSelectedMapApt(null)}
-                    className="p-1 rounded-full text-slate-400 hover:text-slate-700 dark:hover:text-slate-200"
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
-                </div>
-
-                <div className="flex items-center justify-between pt-2 border-t border-slate-100 dark:border-slate-800 text-xs">
-                  <span className="text-slate-400">Total: €{selectedMapApt.priceTotal} {t.perMonth}</span>
-                  <button
-                    onClick={() => onSelectApartment(selectedMapApt)}
-                    className="px-3 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-xl shadow-xs"
-                  >
-                    {t.viewFlatDetails}
-                  </button>
-                </div>
-              </div>
-            )}
-
-            {/* Map Overlay Badge */}
-            <div className="absolute top-4 left-4 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border border-slate-200 dark:border-slate-800 rounded-2xl px-3.5 py-1.5 text-xs font-bold text-slate-700 dark:text-slate-300 shadow-sm pointer-events-none">
-              {t.interactiveMapBanner}
-            </div>
-
-          </div>
-
+      {/* APARTMENTS GRID */}
+      {filteredApartments.length === 0 ? (
+        <div className="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl p-12 text-center my-6">
+          <Home className="w-12 h-12 text-slate-300 dark:text-slate-600 mx-auto mb-3" />
+          <h3 className="text-base font-bold text-slate-800 dark:text-slate-200 mb-1">
+            {language === 'ro' ? 'Niciun apartament găsit' : language === 'ru' ? 'Квартиры не найдены' : 'No apartments found'}
+          </h3>
+          <p className="text-xs text-slate-500 dark:text-slate-400">
+            {language === 'ro' ? 'Încearcă să resetezi filtrele sau să selectezi alt cartier.' : language === 'ru' ? 'Попробуйте сбросить фильтры или выбрать другой район.' : 'Try resetting the filters or selecting another district.'}
+          </p>
         </div>
       ) : (
-        /* VIEW: LIST VIEW */
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredApartments.map(apt => (
             <div
@@ -323,13 +192,14 @@ export default function ApartmentsPage({
                 className="relative h-52 overflow-hidden bg-slate-100 dark:bg-slate-800 cursor-pointer"
               >
                 <img
-                  src={apt.images[0]}
+                  src={(Array.isArray(apt.images) ? apt.images[0] : null) || apt.image || 'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1000&q=80'}
                   alt={apt.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                  loading="lazy"
                 />
                 <div className="absolute top-3 left-3 bg-slate-900/80 backdrop-blur-xs text-white px-2.5 py-1 rounded-xl text-xs font-bold flex items-center gap-1">
                   <Users className="w-3.5 h-3.5 text-blue-400" />
-                  <span>{apt.roommatesNeeded} {t.roommatesNeeded}</span>
+                  <span>{apt.roommatesNeeded || 1} {t.roommatesNeeded}</span>
                 </div>
 
                 <div className="absolute bottom-3 right-3 bg-white/95 dark:bg-slate-900/95 backdrop-blur-xs text-slate-900 dark:text-white px-2.5 py-1 rounded-xl text-xs font-black shadow-sm">
@@ -340,24 +210,24 @@ export default function ApartmentsPage({
               {/* Card info */}
               <div className="p-5 flex-1 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-1 text-slate-500 dark:text-slate-400 text-xs mb-1.5 font-semibold">
-                    <MapPin className="w-3.5 h-3.5 text-blue-600" />
-                    <span>{apt.district}</span>
+                  <div className="flex items-center gap-1.5 text-slate-500 dark:text-slate-400 text-xs mb-1.5 font-semibold">
+                    <MapPin className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+                    <span className="truncate">{apt.address || `${getLocalizedContent(apt.district, language)}, Chișinău`}</span>
                     <span>•</span>
-                    <span>{apt.rooms} {t.roomsCount}</span>
+                    <span className="shrink-0">{apt.rooms} {t.roomsCount}</span>
                     <span>•</span>
-                    <span>{apt.area} m²</span>
+                    <span className="shrink-0">{apt.area} m²</span>
                   </div>
 
                   <h3 
                     onClick={() => onSelectApartment(apt)}
                     className="font-bold text-slate-900 dark:text-white text-base leading-snug group-hover:text-blue-600 dark:group-hover:text-blue-400 transition cursor-pointer line-clamp-1 mb-2"
                   >
-                    {apt.title}
+                    {getLocalizedField(apt, 'title', language)}
                   </h3>
 
                   <p className="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 mb-3">
-                    {apt.description}
+                    {getLocalizedField(apt, 'description', language)}
                   </p>
 
                   <div className="flex flex-wrap gap-1 mb-4">
@@ -371,12 +241,12 @@ export default function ApartmentsPage({
                         👶 {t.childrenFriendly}
                       </span>
                     )}
-                    {apt.amenities.slice(0, 2).map((amenity, idx) => (
+                    {(apt.amenities || []).slice(0, 2).map((amenity, idx) => (
                       <span
                         key={idx}
                         className="text-[11px] font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 px-2 py-0.5 rounded-lg"
                       >
-                        {amenity}
+                        {getLocalizedContent(amenity, language)}
                       </span>
                     ))}
                   </div>
