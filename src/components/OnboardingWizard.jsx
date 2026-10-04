@@ -1,14 +1,34 @@
 import React, { useState } from 'react';
 import { 
   X, Check, ArrowRight, ArrowLeft, Sparkles, User, 
-  MapPin, Euro, Calendar, Coffee, Sliders, Upload, Camera
+  MapPin, Euro, Calendar, Coffee, Sliders, Upload, Camera,
+  Loader2, AlertCircle
 } from 'lucide-react';
 import { DISTRICTS } from '../data/mockData';
+import { compressImage } from '../utils/imageUtils';
 
 export default function OnboardingWizard({ isOpen, onClose, onComplete }) {
   if (!isOpen) return null;
 
   const [step, setStep] = useState(1);
+  const [avatarError, setAvatarError] = useState(null);
+  const [isUploadingAvatar, setIsUploadingAvatar] = useState(false);
+
+  const handleAvatarFileChange = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setAvatarError(null);
+    setIsUploadingAvatar(true);
+    try {
+      const compressed = await compressImage(file, { maxWidth: 600, maxHeight: 600, quality: 0.85 });
+      setFormData(prev => ({ ...prev, avatar: compressed }));
+    } catch (err) {
+      setAvatarError(err.message || 'Eroare la procesarea fotografiei');
+    } finally {
+      setIsUploadingAvatar(false);
+      e.target.value = '';
+    }
+  };
 
   // Form state
   const [formData, setFormData] = useState({
@@ -186,22 +206,71 @@ export default function OnboardingWizard({ isOpen, onClose, onComplete }) {
               </div>
 
               <div>
-                <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-1">
-                  Profile Photo URL
+                <label className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block mb-2">
+                  Fotografie de Profil / Avatar
                 </label>
-                <div className="flex items-center gap-3">
-                  <img
-                    src={formData.avatar}
-                    alt="Preview"
-                    className="w-12 h-12 rounded-xl object-cover border border-slate-300 shrink-0"
-                  />
-                  <input
-                    type="text"
-                    value={formData.avatar}
-                    onChange={(e) => setFormData({ ...formData, avatar: e.target.value })}
-                    className="w-full bg-slate-50 border border-slate-200 rounded-xl p-2.5 text-xs text-slate-700 outline-none focus:border-blue-600"
-                    placeholder="https://images.unsplash.com/..."
-                  />
+                
+                <div className="flex flex-col sm:flex-row items-center gap-4 p-4 bg-slate-50 border border-slate-200 rounded-2xl">
+                  {/* Circular preview with camera badge overlay */}
+                  <div 
+                    className="relative group cursor-pointer shrink-0" 
+                    onClick={() => document.getElementById('onboarding-avatar-file')?.click()}
+                    title="Apasă pentru a alege o poză"
+                  >
+                    <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-blue-500 shadow-md bg-slate-200">
+                      <img
+                        src={formData.avatar}
+                        alt="Avatar preview"
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="absolute inset-0 bg-slate-900/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-200">
+                      <Camera className="w-6 h-6 text-white" />
+                    </div>
+                    <div className="absolute bottom-0 right-0 p-2 bg-blue-600 text-white rounded-full shadow-md border-2 border-white">
+                      <Camera className="w-3.5 h-3.5" />
+                    </div>
+                  </div>
+
+                  <div className="flex-1 text-center sm:text-left space-y-2 w-full">
+                    <input
+                      type="file"
+                      id="onboarding-avatar-file"
+                      accept="image/*"
+                      onChange={handleAvatarFileChange}
+                      className="hidden"
+                    />
+                    
+                    <button
+                      type="button"
+                      onClick={() => document.getElementById('onboarding-avatar-file')?.click()}
+                      disabled={isUploadingAvatar}
+                      className="w-full sm:w-auto min-h-[44px] px-4 py-2.5 bg-white hover:bg-slate-100 border border-slate-300 text-slate-800 rounded-xl font-bold text-xs shadow-2xs transition flex items-center justify-center gap-2 cursor-pointer active:scale-98"
+                    >
+                      {isUploadingAvatar ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin text-blue-600" />
+                          <span>Se comprimă fotografia...</span>
+                        </>
+                      ) : (
+                        <>
+                          <Upload className="w-4 h-4 text-blue-600" />
+                          <span>Încarcă fotografie din telefon / PC</span>
+                        </>
+                      )}
+                    </button>
+
+                    <p className="text-[11px] text-slate-400">
+                      Suportă JPG, PNG, WebP de pe cameră sau galerie (redimensionat automat la 600×600px).
+                    </p>
+
+                    {avatarError && (
+                      <div className="flex items-center gap-1.5 text-xs text-rose-600 font-semibold mt-1">
+                        <AlertCircle className="w-3.5 h-3.5 shrink-0" />
+                        <span>{avatarError}</span>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
