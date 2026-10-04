@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { 
   X, User, Sparkles, Heart, MessageSquare, Home, Settings, 
-  ShieldCheck, Check, ArrowRight, Bell, Users
+  ShieldCheck, Check, ArrowRight, Bell, Users, Camera, Upload, Loader2, AlertCircle
 } from 'lucide-react';
+import { compressImage } from '../utils/imageUtils';
 
 export default function UserDashboardModal({ 
   isOpen, 
@@ -10,9 +11,38 @@ export default function UserDashboardModal({
   currentUser,
   onNavigate,
   onOpenCreateProfile,
-  onOpenPublishApartment
+  onOpenPublishApartment,
+  onUpdateAvatar,
+  language = 'ro'
 }) {
   if (!isOpen) return null;
+
+  const [isUploading, setIsUploading] = useState(false);
+  const [uploadError, setUploadError] = useState(null);
+  const [uploadSuccess, setUploadSuccess] = useState(false);
+
+  const handleFileChange = async (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploadError(null);
+    setUploadSuccess(false);
+    setIsUploading(true);
+
+    try {
+      const compressed = await compressImage(file, { maxWidth: 600, maxHeight: 600, quality: 0.85 });
+      if (onUpdateAvatar) {
+        await onUpdateAvatar(compressed);
+      }
+      setUploadSuccess(true);
+      setTimeout(() => setUploadSuccess(false), 3500);
+    } catch (err) {
+      setUploadError(err.message || 'Eroare la procesarea fotografiei');
+    } finally {
+      setIsUploading(false);
+      e.target.value = '';
+    }
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-in fade-in overflow-y-auto">
@@ -20,33 +50,85 @@ export default function UserDashboardModal({
         className="w-full max-w-xl bg-white border border-slate-200 rounded-3xl shadow-2xl overflow-hidden my-6 animate-in zoom-in-95 duration-200 flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* HEADER */}
-        <div className="p-6 border-b border-slate-200 bg-slate-50 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="relative">
-              <img
-                src={currentUser.avatar}
-                alt={currentUser.name}
-                className="w-12 h-12 rounded-2xl object-cover border border-slate-300 shadow-xs"
+        {/* HEADER WITH INTERACTIVE AVATAR UPLOAD */}
+        <div className="p-6 border-b border-slate-200 bg-slate-50 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            {/* Circular Avatar with Camera Overlay */}
+            <div 
+              className="relative group cursor-pointer shrink-0"
+              onClick={() => document.getElementById('dashboard-avatar-upload')?.click()}
+              title="Apasă pentru a schimba poza"
+            >
+              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-blue-500 shadow-md bg-slate-200">
+                <img
+                  src={currentUser?.avatar || 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80'}
+                  alt={currentUser?.name}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute inset-0 bg-slate-900/40 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition duration-200">
+                <Camera className="w-5 h-5 text-white" />
+              </div>
+              <div className="absolute bottom-0 right-0 p-1.5 bg-blue-600 text-white rounded-full shadow border-2 border-white">
+                <Camera className="w-3.5 h-3.5" />
+              </div>
+              <input
+                type="file"
+                id="dashboard-avatar-upload"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="hidden"
               />
-              <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full" />
             </div>
+
             <div>
               <div className="flex items-center gap-1.5">
                 <h2 className="text-lg font-black text-slate-900">
-                  Hi, {currentUser.name} 👋
+                  Hi, {currentUser?.name} 👋
                 </h2>
                 <ShieldCheck className="w-4 h-4 text-blue-600" />
               </div>
               <p className="text-xs text-slate-500 font-medium">
-                Active resident in Chișinău • Centru
+                Active resident in Chișinău • {currentUser?.district || 'Centru'}
               </p>
+
+              <button
+                type="button"
+                onClick={() => document.getElementById('dashboard-avatar-upload')?.click()}
+                disabled={isUploading}
+                className="mt-1 text-xs font-bold text-blue-600 hover:text-blue-800 flex items-center gap-1 cursor-pointer"
+              >
+                {isUploading ? (
+                  <>
+                    <Loader2 className="w-3 h-3 animate-spin" />
+                    <span>Se comprimă...</span>
+                  </>
+                ) : (
+                  <>
+                    <Upload className="w-3 h-3" />
+                    <span>Schimbă poza de profil</span>
+                  </>
+                )}
+              </button>
+
+              {uploadSuccess && (
+                <div className="flex items-center gap-1 text-[11px] text-emerald-600 font-bold mt-0.5">
+                  <Check className="w-3 h-3 stroke-[3]" />
+                  <span>Fotografie salvată cu succes!</span>
+                </div>
+              )}
+              {uploadError && (
+                <div className="flex items-center gap-1 text-[11px] text-rose-600 font-bold mt-0.5">
+                  <AlertCircle className="w-3 h-3" />
+                  <span>{uploadError}</span>
+                </div>
+              )}
             </div>
           </div>
 
           <button 
             onClick={onClose}
-            className="p-1 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-200 cursor-pointer"
+            className="self-start sm:self-auto p-1.5 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-200 cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center"
           >
             <X className="w-5 h-5" />
           </button>
