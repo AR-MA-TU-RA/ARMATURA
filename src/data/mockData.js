@@ -195,7 +195,29 @@ export const TRANSLATIONS = {
     demoAsMihai: "Demo as Mihai",
     exploreAsGuest: "Explore as guest first →",
     alreadyHaveAccount: "Already have an account? Log in",
-    needAccount: "Don't have an account? Create one"
+    needAccount: "Don't have an account? Create one",
+
+    // Apartment Detail Actions & Localization
+    interestedRoommatesTitle: "People interested in this apartment",
+    wantToShareFlat: "Team up for this flat",
+    appliedForFlat: "Applied for this flat",
+    writeMessage: "Send message",
+    firstInterestedPerson: "Be the first to express interest in sharing this flat!",
+    budgetLabel: "Budget",
+    ownApartmentAlert: "This is your listing. You cannot apply to your own apartment.",
+
+    // Favorites & Applied Flats
+    appliedApartmentsTab: "Applied flats",
+    appliedBadge: "Applied for flatsharing",
+    noAppliedApartmentsTitle: "No applied apartments yet",
+    noAppliedApartmentsSub: "When you click 'Team up for this flat' on a property, it will appear here for easy tracking.",
+    exploreApartmentsBtn: "Explore apartments",
+    viewDetailsBtn: "View details",
+    savedRoommatesTab: "Roommates",
+    savedApartmentsTab: "Apartments",
+
+    // Chat Prefill Template
+    chatApartmentPrefill: "Hi! I noticed you are interested in the apartment in {district} ({address}). Do you think we could team up to share rent?"
   },
 
   ro: {
@@ -391,7 +413,29 @@ export const TRANSLATIONS = {
     demoAsMihai: "Demo ca Mihai",
     exploreAsGuest: "Explorează mai întâi ca vizitator →",
     alreadyHaveAccount: "Ai deja cont? Autentifică-te",
-    needAccount: "Nu ai cont? Înregistrează-te"
+    needAccount: "Nu ai cont? Înregistrează-te",
+
+    // Apartment Detail Actions & Localization
+    interestedRoommatesTitle: "Persoane interesate de acest apartament",
+    wantToShareFlat: "Vreau să împart acest apartament",
+    appliedForFlat: "Ai aplicat pentru acest apartament",
+    writeMessage: "Scrie mesaj",
+    firstInterestedPerson: "Fii prima persoană interesată de împărțirea acestui apartament!",
+    budgetLabel: "Buget",
+    ownApartmentAlert: "Acesta este anunțul tău. Nu poți aplica pentru propriul apartament.",
+
+    // Favorites & Applied Flats
+    appliedApartmentsTab: "Apartamente aplicate",
+    appliedBadge: "Aplicat pentru împărțire",
+    noAppliedApartmentsTitle: "Nu ai aplicat la niciun apartament încă",
+    noAppliedApartmentsSub: "Când apeși pe „Vreau să împart acest apartament” pe o proprietate, ea va apărea aici pentru urmărire facilă.",
+    exploreApartmentsBtn: "Explorează apartamente",
+    viewDetailsBtn: "Vezi detalii",
+    savedRoommatesTab: "Colegi salvați",
+    savedApartmentsTab: "Apartamente favorite",
+
+    // Chat Prefill Template
+    chatApartmentPrefill: "Salut! Am văzut că ești interesat de apartamentul din {district} ({address}). Crezi că ne potrivim să împărțim chiria?"
   },
 
   ru: {
@@ -587,7 +631,29 @@ export const TRANSLATIONS = {
     demoAsMihai: "Демо: Михаил",
     exploreAsGuest: "Сначала посмотреть как гость →",
     alreadyHaveAccount: "Уже есть аккаунт? Войти",
-    needAccount: "Нет аккаунта? Зарегистрироваться"
+    needAccount: "Нет аккаунта? Зарегистрироваться",
+
+    // Apartment Detail Actions & Localization
+    interestedRoommatesTitle: "Люди, заинтересованные в этой квартире",
+    wantToShareFlat: "Снять эту квартиру вместе",
+    appliedForFlat: "Вы откликнулись на эту квартиру",
+    writeMessage: "Написать",
+    firstInterestedPerson: "Будьте первым, кто заинтересовался этой квартирой!",
+    budgetLabel: "Бюджет",
+    ownApartmentAlert: "Это ваше объявление. Вы не можете откликнуться на собственную квартиру.",
+
+    // Favorites & Applied Flats
+    appliedApartmentsTab: "Мои отклики",
+    appliedBadge: "Отклик на совместную аренду",
+    noAppliedApartmentsTitle: "Вы пока не откликнулись ни на одну квартиру",
+    noAppliedApartmentsSub: "Когда вы нажмете «Снять эту квартиру вместе» на странице квартиры, она появится здесь для удобного отслеживания.",
+    exploreApartmentsBtn: "Смотреть квартиры",
+    viewDetailsBtn: "Подробнее",
+    savedRoommatesTab: "Сохранённые соседи",
+    savedApartmentsTab: "Избранные квартиры",
+
+    // Chat Prefill Template
+    chatApartmentPrefill: "Привет! Заметил, что тебя интересует квартира в районе {district} ({address}). Как насчет объединиться и снимать вместе?"
   }
 };
 
@@ -601,6 +667,364 @@ export const DISTRICTS = [
   "Poșta Veche",
   "Durlești"
 ];
+
+// ─── Multi-Language Content Dictionaries (RO, EN, RU) ─────────────────────────
+
+export const LOCALIZED_DICTIONARY = {
+  // Districts
+  "Centru": { ro: "Centru", en: "Centru", ru: "Центр" },
+  "Botanica": { ro: "Botanica", en: "Botanica", ru: "Ботаника" },
+  "Buiucani": { ro: "Buiucani", en: "Buiucani", ru: "Буюканы" },
+  "Rîșcani": { ro: "Rîșcani", en: "Rîșcani", ru: "Рышкановка" },
+  "Ciocana": { ro: "Ciocana", en: "Ciocana", ru: "Чеканы" },
+  "Telecentru": { ro: "Telecentru", en: "Telecentru", ru: "Телецентр" },
+  "Poșta Veche": { ro: "Poșta Veche", en: "Poșta Veche", ru: "Старая Почта" },
+  "Durlești": { ro: "Durlești", en: "Durlești", ru: "Дурлешты" },
+
+  // Amenities
+  "Wi-Fi": { ro: "Wi-Fi", en: "Wi-Fi", ru: "Wi-Fi" },
+  "Washing machine": { ro: "Mașină de spălat", en: "Washing machine", ru: "Стиральная машина" },
+  "Balcony": { ro: "Balcon", en: "Balcony", ru: "Балкон" },
+  "Air conditioning": { ro: "Aer condiționat", en: "Air conditioning", ru: "Кондиционер" },
+  "Autonomous heating": { ro: "Încălzire autonomă", en: "Autonomous heating", ru: "Автономное отопление" },
+  "Elevator": { ro: "Lift", en: "Elevator", ru: "Лифт" },
+  "Modern elevator": { ro: "Lift modern", en: "Modern elevator", ru: "Современный лифт" },
+  "2 Bathrooms": { ro: "2 băi", en: "2 Bathrooms", ru: "2 санузла" },
+  "Parking": { ro: "Parcare", en: "Parking", ru: "Парковка" },
+  "Parking place": { ro: "Loc de parcare", en: "Parking place", ru: "Парковочное место" },
+  "Underground parking option": { ro: "Opțiune parcare subterană", en: "Underground parking option", ru: "Подземный паркинг" },
+  "High ceilings": { ro: "Tavane înalte", en: "High ceilings", ru: "Высокие потолки" },
+  "Dishwasher": { ro: "Mașină de spălat vase", en: "Dishwasher", ru: "Посудомоечная машина" },
+  "Central location": { ro: "Locație centrală", en: "Central location", ru: "Центральное расположение" },
+  "Fridge": { ro: "Frigider", en: "Fridge", ru: "Холодильник" },
+  "Oven": { ro: "Cuptor", en: "Oven", ru: "Духовка" },
+  "Afghan Park 3 min": { ro: "Parcul Afgan la 3 min", en: "Afghan Park 3 min", ru: "Афганский парк 3 мин" },
+  "Low utilities": { ro: "Facturi mici utilități", en: "Low utilities", ru: "Низкие коммунальные" },
+  "Private yard": { ro: "Curte privată", en: "Private yard", ru: "Закрытый двор" },
+  "BBQ area": { ro: "Zonă BBQ / Grătar", en: "BBQ area", ru: "Зона барбекю" },
+  "Direct transport": { ro: "Transport direct", en: "Direct transport", ru: "Прямой транспорт" },
+  "Park view": { ro: "Vedere spre parc", en: "Park view", ru: "Вид на парк" },
+  "Quiet neighbors": { ro: "Vecini liniștiți", en: "Quiet neighbors", ru: "Тихие соседи" },
+  "Pet friendly": { ro: "Acceptă animale de companie", en: "Pet friendly", ru: "Можно с животными" },
+
+  // Badges
+  "Student": { ro: "Student", en: "Student", ru: "Студент" },
+  "Non-smoker": { ro: "Nefumător", en: "Non-smoker", ru: "Не курит" },
+  "No pets": { ro: "Fără animale", en: "No pets", ru: "Без животных" },
+  "Clean": { ro: "Ordonat", en: "Clean", ru: "Чистоплотный" },
+  "Quiet": { ro: "Liniștit", en: "Quiet", ru: "Спокойный" },
+  "WFH": { ro: "Lucru de acasă", en: "WFH", ru: "Удалёнка" },
+  "Orderly": { ro: "Organizat", en: "Orderly", ru: "Аккуратный" },
+  "Team-up ready": { ro: "Gata de echipă", en: "Team-up ready", ru: "Готов снимать вместе" },
+  "IT Specialist": { ro: "Specialist IT", en: "IT Specialist", ru: "IT-специалист" },
+  "Gym enthusiast": { ro: "Pasionat de sală", en: "Gym enthusiast", ru: "Любит спорт" },
+  "Medical Resident": { ro: "Medic rezident", en: "Medical Resident", ru: "Врач-ординатор" },
+  "No guests": { ro: "Fără oaspeți", en: "No guests", ru: "Без гостей" },
+  "Responsible": { ro: "Responsabil", en: "Responsible", ru: "Ответственный" },
+  "Pet-friendly": { ro: "Iubește animalele", en: "Pet-friendly", ru: "Любит животных" },
+  "Has Dog": { ro: "Are câine", en: "Has Dog", ru: "Есть собака" },
+  "Social": { ro: "Sociabil", en: "Social", ru: "Общительный" },
+  "Organized": { ro: "Organizat", en: "Organized", ru: "Организованный" },
+  "Professional": { ro: "Profesionist", en: "Professional", ru: "Работающий" },
+  "Sports": { ro: "Sportiv", en: "Sports", ru: "Спорт" },
+  "Yoga": { ro: "Yoga", en: "Yoga", ru: "Йога" },
+  "Affordable": { ro: "Buget accesibil", en: "Affordable", ru: "Экономный" },
+  "Park nearby": { ro: "Parc aproape", en: "Park nearby", ru: "Рядом парк" },
+  "Law Student": { ro: "Student la Drept", en: "Law Student", ru: "Студент-юрист" },
+  "Punctual": { ro: "Punctual", en: "Punctual", ru: "Пунктуальный" },
+  "Has Cat": { ro: "Are pisică", en: "Has Cat", ru: "Есть кошка" },
+  "Creative": { ro: "Creativ", en: "Creative", ru: "Творческий" },
+
+  // Occupations
+  "Design Student & UI Freelancer": { ro: "Studentă la Design & Freelancer UI", en: "Design Student & UI Freelancer", ru: "Студентка дизайна и UI-фрилансер" },
+  "Economics Student & Accountant": { ro: "Studentă la Economie & Contabilă", en: "Economics Student & Accountant", ru: "Студентка экономики и бухгалтер" },
+  "Software Engineer": { ro: "Inginer Software", en: "Software Engineer", ru: "Инженер-программист" },
+  "Medical Resident": { ro: "Medic Rezident", en: "Medical Resident", ru: "Врач-ординатор" },
+  "Digital Marketing Specialist": { ro: "Specialist Marketing Digital", en: "Digital Marketing Specialist", ru: "Специалист по digital-маркетингу" },
+  "Architecture Student": { ro: "Student la Arhitectură", en: "Architecture Student", ru: "Студент-архитектор" },
+  "Data Analyst": { ro: "Analist de Date", en: "Data Analyst", ru: "Аналитик данных" },
+  "Languages Student": { ro: "Studentă la Limbi Străine", en: "Languages Student", ru: "Студентка факультета языков" },
+  "Senior QA Engineer": { ro: "Inginer QA Senior", en: "Senior QA Engineer", ru: "Старший инженер по тестированию" },
+  "Pharmacy Student": { ro: "Studentă la Farmacie", en: "Pharmacy Student", ru: "Студентка фармацевтического" },
+  "Law Master Student": { ro: "Masterand la Drept", en: "Law Master Student", ru: "Магистрант юридического" },
+  "Freelance Translator": { ro: "Traducătoare Freelance", en: "Freelance Translator", ru: "Переводчица-фрилансер" },
+  "Student & Junior Developer": { ro: "Student & Dezvoltator Junior", en: "Student & Junior Developer", ru: "Студент и junior-разработчик" },
+  "Design Student": { ro: "Studentă la Design", en: "Design Student", ru: "Студентка дизайна" },
+
+  // Lifestyle habits
+  "Very tidy": { ro: "Foarte ordonat", en: "Very tidy", ru: "Очень чистоплотный" },
+  "Tidy": { ro: "Ordonat", en: "Tidy", ru: "Чистоплотный" },
+  "Extremely tidy": { ro: "Extrem de ordonat", en: "Extremely tidy", ru: "Максимально чистоплотный" },
+  "Relaxed": { ro: "Relaxat", en: "Relaxed", ru: "Спокойное отношение" },
+  "Calm & Quiet": { ro: "Calm și liniștit", en: "Calm & Quiet", ru: "Спокойный и тихий" },
+  "Calm": { ro: "Calm", en: "Calm", ru: "Спокойный" },
+  "Quiet": { ro: "Liniștit", en: "Quiet", ru: "Тихий" },
+  "Social & friendly": { ro: "Sociabil și prietenos", en: "Social & friendly", ru: "Общительный и дружелюбный" },
+  "Strict non-smoker": { ro: "Strict nefumător", en: "Strict non-smoker", ru: "Категорически не курит" },
+  "Smoker-friendly": { ro: "Tolerant cu fumatul", en: "Smoker-friendly", ru: "Нейтрально к курению" },
+  "Has a dog": { ro: "Are un câine", en: "Has a dog", ru: "Есть собака" },
+  "Has a cat": { ro: "Are o pisică", en: "Has a cat", ru: "Есть кошка" },
+  "Tolerant of cats": { ro: "Tolerant cu pisicile", en: "Tolerant of cats", ru: "Не против кошек" },
+  "Rarely (weekends only)": { ro: "Rar (doar în weekend)", en: "Rarely (weekends only)", ru: "Редко (по выходным)" },
+  "Rarely": { ro: "Rar", en: "Rarely", ru: "Редко" },
+  "Rarely or never": { ro: "Rar sau deloc", en: "Rarely or never", ru: "Редко или никогда" },
+  "Occasional friends": { ro: "Ocazional prieteni", en: "Occasional friends", ru: "Иногда друзья в гостях" },
+  "Occasional friends for dinner": { ro: "Ocazional prieteni la cină", en: "Occasional friends for dinner", ru: "Иногда друзья на ужин" },
+  "Early riser (07:30 - 23:00)": { ro: "Se trezește devreme (07:30 - 23:00)", en: "Early riser (07:30 - 23:00)", ru: "Жаворонок (07:30 - 23:00)" },
+  "Early bird (06:00 - 22:30)": { ro: "Se trezește devreme (06:00 - 22:30)", en: "Early bird (06:00 - 22:30)", ru: "Ранний подъём (06:00 - 22:30)" },
+  "Early bird (07:00 - 22:30)": { ro: "Se trezește devreme (07:00 - 22:30)", en: "Early bird (07:00 - 22:30)", ru: "Ранний подъём (07:00 - 22:30)" },
+  "Early bird": { ro: "Se trezește devreme", en: "Early bird", ru: "Жаворонок" },
+  "Night owl (09:00 - 01:00)": { ro: "Culcare târzie (09:00 - 01:00)", en: "Night owl (09:00 - 01:00)", ru: "Сова (09:00 - 01:00)" },
+  "Night owl while designing": { ro: "Lucrează noaptea la proiecte", en: "Night owl while designing", ru: "Работает допоздна" },
+  "Night owl": { ro: "Culcare târzie", en: "Night owl", ru: "Сова" },
+  "Regular (08:00 - 23:30)": { ro: "Program obișnuit (08:00 - 23:30)", en: "Regular (08:00 - 23:30)", ru: "Обычный режим (08:00 - 23:30)" },
+  "Regular (08:00 - 00:00)": { ro: "Program obișnuit (08:00 - 00:00)", en: "Regular (08:00 - 00:00)", ru: "Обычный режим (08:00 - 00:00)" },
+  "Regular (08:30 - 00:00)": { ro: "Program obișnuit (08:30 - 00:00)", en: "Regular (08:30 - 00:00)", ru: "Обычный режим (08:30 - 00:00)" },
+  "Regular (07:30 - 23:00)": { ro: "Program obișnuit (07:30 - 23:00)", en: "Regular (07:30 - 23:00)", ru: "Обычный режим (07:30 - 23:00)" },
+  "Regular (07:30 - 23:30)": { ro: "Program obișnuit (07:30 - 23:30)", en: "Regular (07:30 - 23:30)", ru: "Обычный режим (07:30 - 23:30)" },
+  "Morning routine (07:00 - 23:00)": { ro: "Rutină matinală (07:00 - 23:00)", en: "Morning routine (07:00 - 23:00)", ru: "Утренний распорядок (07:00 - 23:00)" },
+  "Yes (part-time)": { ro: "Da (part-time)", en: "Yes (part-time)", ru: "Да (частично)" },
+  "Yes (Hybrid)": { ro: "Da (hibrid)", en: "Yes (Hybrid)", ru: "Да (гибридный)" },
+  "Yes (Full-time)": { ro: "Da (full-time)", en: "Yes (Full-time)", ru: "Да (полный день)" },
+  "Yes (Study)": { ro: "Da (studii)", en: "Yes (Study)", ru: "Да (учёба)" },
+  "Yes (Student projects)": { ro: "Da (proiecte)", en: "Yes (Student projects)", ru: "Да (проекты)" },
+  "Study from home": { ro: "Studiază de acasă", en: "Study from home", ru: "Учится из дома" },
+  "Hybrid": { ro: "Hibrid", en: "Hybrid", ru: "Гибридный" },
+  "Sometimes": { ro: "Uneori", en: "Sometimes", ru: "Иногда" },
+  "Occasionally": { ro: "Ocazional", en: "Occasionally", ru: "Изредка" },
+  "Moderate": { ro: "Moderat", en: "Moderate", ru: "Умеренно" },
+  "No": { ro: "Nu", en: "No", ru: "Нет" },
+
+  // Similar habits
+  "Likes order and cleanliness": { ro: "Iubește ordinea și curățenia", en: "Likes order and cleanliness", ru: "Ценит порядок и чистоту" },
+  "Prefers a quiet atmosphere": { ro: "Preferă o atmosferă liniștită", en: "Prefers a quiet atmosphere", ru: "Предпочитает тишину" },
+  "Same budget range (€250–300)": { ro: "Același interval de buget (€250–300)", en: "Same budget range (€250–300)", ru: "Тот же бюджет (€250–300)" },
+  "Clean kitchen policy": { ro: "Bucătărie mereu curată", en: "Clean kitchen policy", ru: "Чистота на кухне" },
+  "Same budget": { ro: "Același buget", en: "Same budget", ru: "Одинаковый бюджет" },
+  "Quiet nights": { ro: "Nopți liniștite", en: "Quiet nights", ru: "Тишина по ночам" }
+};
+
+export const CONTENT_TRANSLATIONS = {
+  // Roommate profiles
+  "anna-moraru": {
+    headline: { ro: "Caut o colegă de apartament pentru 2 camere", en: "Looking for a roommate for a 2-room apartment", ru: "Ищу соседку в 2-комнатную квартиру" },
+    bio: {
+      ro: "Sunt studentă în anul 3 la Design la UTM. Îmi place o atmosferă liniștită, iubesc plantele și ceaiul din plante și lucrez de acasă ca freelancer UI. Foarte curată și respectuoasă cu spațiul personal.",
+      en: "I am a 3rd year design student at UTM. I like a quiet atmosphere, love plants and herbal tea, and work from home a few days a week as a UI freelancer. Very clean and respectful of personal space.",
+      ru: "Студентка 3-го курса дизайна в UTM. Ценю тишину и уют, люблю комнатные растения и травяной чай. Работаю из дома UI-фрилансером. Чистоплотна и уважаю личные границы."
+    }
+  },
+  "maria-colesnic": {
+    headline: { ro: "Vreau să facem echipă pentru un apartament lângă Valea Trandafirilor", en: "Wants to team up for a sunny flat near Valea Trandafirilor", ru: "Хочу объединиться для аренды квартиры у Долины Роз" },
+    bio: {
+      ro: "Studentă la Finanțe la ASEM și contabilă part-time. Îmi place să gătesc, să păstrez spațiile comune impecabile și să mă uit la seriale seara. Nu organizez petreceri zgomotoase.",
+      en: "Finance student at ASEM and part-time accountant. I enjoy cooking, keeping common spaces spotless, and watching series on Netflix in the evening. I don't host loud parties.",
+      ru: "Студентка финансов в ASEM и бухгалтер на неполный день. Люблю готовить, держать квартиру в чистоте и смотреть сериалы по вечерам. Не устраиваю шумных вечеринок."
+    }
+  },
+  "vlad-moraru": {
+    headline: { ro: "Programator backend căutând un coleg ordonat", en: "Backend dev looking for a tidy flatmate", ru: "Бэкенд-разработчик ищет аккуратного соседа" },
+    bio: {
+      ro: "Inginer backend la o companie din IT Park. În timpul săptămânii sunt la sală sau scriu cod cu căștile pe urechi. Păstrez spațiile comune curate și respect intimitatea.",
+      en: "Backend engineer at an IT park company. During weekdays I'm either at the gym or coding with headphones on. I keep common areas tidy and respect personal boundaries.",
+      ru: "Backend-разработчик в компании из IT Park. В будни либо в спортзале, либо пишу код в наушниках. Поддерживаю порядок на кухне и уважаю чужое личное пространство."
+    }
+  },
+  "elena-ceban": {
+    headline: { ro: "Studentă la medicină în căutare de liniște și respect", en: "Medical student looking for a calm living environment", ru: "Студентка-медик ищет спокойную обстановку для учёбы" },
+    bio: {
+      ro: "Anul 4 la Medicină Generală. Din cauza gărzilor lungi de la spital și studiului intens, am nevoie de o locuință liniștită unde se respectă orele de somn și liniște. Foarte responsabilă cu cheltuielile.",
+      en: "4th year clinical medicine. Due to long hospital shifts and study requirements, I need a peaceful home where sleep and quiet study hours are respected. Very responsible with bills.",
+      ru: "4-й курс лечебного факультета. Из-за ночных смен в больнице и учёбы мне нужен тихий дом, где уважают сон и время занятий. Очень пунктуальна в оплате счетов."
+    }
+  },
+  "dan-rusu": {
+    headline: { ro: "Specialist marketing cu cățel educat căutând coleg", en: "Marketing specialist with trained dog looking to team up", ru: "Маркетолог с воспитанным псом ищет соседа" },
+    bio: {
+      ro: "Lucrez în marketing digital. Prietenos, pasionat de espresso bun și am un buldog francez de 2 ani, Bruno, foarte cuminte, educat și silențios.",
+      en: "I work in digital marketing. Friendly, love making espresso, and have a very well-behaved 2-year-old French bulldog named Bruno who is fully trained and silent.",
+      ru: "Работаю в цифровом маркетинге. Дружелюбный, люблю хороший эспрессо. У меня воспитанный 2-летний французский бульдог Бруно — тихий и приученный к порядку."
+    }
+  },
+  "irina-rotaru": {
+    headline: { ro: "Studentă la arhitectură în căutare de spațiu luminos", en: "Architecture student looking for an aesthetic quiet place", ru: "Студентка-архитектор ищет светлое тихое жильё" },
+    bio: {
+      ro: "Anul 2 la Arhitectură. Cea mai mare parte a timpului o petrec modelând 3D sau schițând. Apreciez estetica, minimalismul și un mediu calm pentru creație.",
+      en: "2nd year architecture. Most of my time is spent making 3D models or sketching. I appreciate aesthetics, minimal clutter, and a peaceful environment to create.",
+      ru: "2-й курс архитектурного. Большую часть времени проектирую 3D-модели и рисую. Ценю эстетику, порядок и спокойную творческую атмосферу."
+    }
+  },
+  "maxim-lupu": {
+    headline: { ro: "Analist date calm căutând coleg în Centru", en: "Calm data analyst looking for apartment share in Centru", ru: "Спокойный дата-аналитик ищет соседа в Центре" },
+    bio: {
+      ro: "Lucrez la o companie internațională de fintech. Îmi place alergarea, cărțile de non-ficțiune și gătitul mâncărurilor italiene în weekend. Fire foarte calmă.",
+      en: "Working at an international fin-tech company. I enjoy running, reading non-fiction, and cooking Italian dishes on weekends. Very calm personality.",
+      ru: "Работаю в международной fintech-компании. Люблю бег, книги по саморазвитию и итальянскую кухню по выходным. Очень спокойный и уравновешенный."
+    }
+  },
+  "daria-bostan": {
+    headline: { ro: "Studentă la limbi străine căutând colegă prietenoasă", en: "Languages student looking for a calm friendly flatmate", ru: "Студентка инъяза ищет дружелюбную соседку" },
+    bio: {
+      ro: "Specializarea Engleză și Germană. Citesc mult, fac yoga dimineața și îmi place ceaiul bun. Caut pe cineva prietenos care respectă liniștea reciprocă.",
+      en: "English and German major. I read a lot, do yoga in the mornings, and like tea. Looking for someone friendly who respects mutual peace.",
+      ru: "Факультет английского и немецкого языков. Много читаю, занимаюсь йогой по утрам, люблю чай. Ищу дружелюбного соседа, ценящего взаимный покой."
+    }
+  },
+  "alexandru-sirbu": {
+    headline: { ro: "Inginer QA căutând coleg responsabil în Rîșcani", en: "QA engineer looking for responsible flatmate in Riscani", ru: "Инженер по тестированию ищет ответственного соседа на Рышкановке" },
+    bio: {
+      ro: "Lucrez în testare software IT. Prietenos, liniștit, în weekend merg în drumeții în Codru sau mă întâlnesc cu prietenii în centru. Nefumător.",
+      en: "Working in IT software testing. Friendly, quiet, spend weekends either hiking in Codru or meeting friends downtown. Non-smoker.",
+      ru: "Работаю в сфере тестирования ПО. Дружелюбный, спокойный, на выходных гуляю по Кодрам или встречаюсь с друзьями в центре. Не курю."
+    }
+  },
+  "victoria-gutu": {
+    headline: { ro: "Studentă la farmacie oferă cameră lângă Dendrariu", en: "Pharmacy student offering private room near Dendrariu", ru: "Студентка-фармацевт предлагает комнату возле Дендрария" },
+    bio: {
+      ro: "Studentă în an terminal la Farmacie. Iubesc plantele, bucătăriile curate și ceaiul din plante. Apartamentul este chiar lângă parcul Dendrariu, cu aer curat.",
+      en: "Final year pharmacy student. I love plants, clean kitchens, and herbal tea. The apartment is right next to Dendrariu park with fresh air.",
+      ru: "Выпускной курс фармацевтического. Люблю цветы, чистую кухню и травяной чай. Квартира прямо у парка Дендрарий со свежим воздухом."
+    }
+  },
+  "cristian-lungu": {
+    headline: { ro: "Masterand în drept căutând coleg serios", en: "Law master student looking for quiet serious roommate", ru: "Магистрант-юрист ищет спокойного соседа для совместной аренды" },
+    bio: {
+      ro: "Masterand la Drept. Serios, punctual, pun mare preț pe orele de studiu în liniște. Gătesc simplu și sănătos și păstrez baia și bucătăria imaculate.",
+      en: "Law master student. Serious, punctual, values quiet study hours. I like cooking simple healthy meals and keeping the bathroom and kitchen spotless.",
+      ru: "Магистрант юридического факультета. Серьёзный, пунктуальный, ценю тишину во время учёбы. Готовлю полезную еду, держу ванную и кухню в чистоте."
+    }
+  },
+  "mihaela-croitoru": {
+    headline: { ro: "Traducătoare cu pisică liniștită căutând colegă", en: "Translator with calm cat seeking friendly flatmate", ru: "Переводчица со спокойной кошкой ищет соседку" },
+    bio: {
+      ro: "Traducătoare freelance & copywriter. Iubesc cărțile, plantele de interior și cafeaua de specialitate. Am o pisică British Shorthair liniștită care doarme mult.",
+      en: "Freelance translator & copywriter. I love books, indoor plants, and specialty coffee. I have a quiet British Shorthair cat who sleeps 18 hours a day.",
+      ru: "Переводчица и копирайтер на фрилансе. Обожаю книги, комнатные растения и спешелти кофе. У меня спокойная британская кошка, которая много спит."
+    }
+  },
+
+  // Apartments
+  "apt-1": {
+    title: { ro: "Apartament modern cu 2 camere lângă Valea Trandafirilor", en: "Modern 2-room apartment next to Valea Trandafirilor", ru: "Современная 2-комнатная квартира возле Долины Роз" },
+    description: { ro: "Apartament luminos cu 2 camere, dormitoare private separate și bucătărie deschisă. Chiar lângă parc și MallDova. Zonă liniștită cu legături rapide de transport.", en: "Bright 2-room flat with separate private bedrooms and shared open kitchen. Right next to the park and MallDova. Quiet neighborhood with quick trolleybus connections.", ru: "Светлая 2-комнатная квартира с раздельными спальнями и общей кухней. Рядом парк и MallDova. Спокойный район с удобным транспортом." }
+  },
+  "apt-2": {
+    title: { ro: "Apartament însorit cu 3 camere lângă USM, Buiucani", en: "Sunny 3-room flat near USM, Buiucani", ru: "Солнечная 3-комнатная квартира возле USM, Буюканы" },
+    description: { ro: "Apartament spațios cu 3 camere și 2 băi complete. Fiecare cameră are birou confortabil și dulap. Wi-Fi rapid, supermarket Linella vis-a-vis.", en: "Spacious 3-room apartment with 2 full bathrooms. Each room has a comfortable desk and wardrobe. Fast Wi-Fi, Linella supermarket across the street.", ru: "Просторная 3-комнатная квартира с 2 санузлами. В каждой комнате удобный стол и шкаф. Скоростной интернет, супермаркет Linella через дорогу." }
+  },
+  "apt-3": {
+    title: { ro: "Apartament istoric cu 2 camere pe str. Pușkin, Centru", en: "Historic center 2-room flat on str. Pușkin", ru: "Исторический центр: 2-комнатная квартира на ул. Пушкина" },
+    description: { ro: "La câțiva pași de Parcul Catedralei și Sun City. Reparație calitativă cu geamuri izolate fonic, tavane înalte și bucătărie separată.", en: "Steps from Cathedral Park and Sun City. Premium renovation with soundproof windows, high ceilings, and independent kitchen.", ru: "В двух шагах от Соборного парка и Sun City. Качественный ремонт с шумоизоляцией, высокие потолки и отдельная кухня." }
+  },
+  "apt-4": {
+    title: { ro: "Apartament primitor cu 2 camere și balcon în Rîșcani", en: "Cozy 2-room flat with balcony in Rîșcani", ru: "Уютная 2-комнатная квартира с балконом на Рышкановке" },
+    description: { ro: "Situat pe bd. Moscova lângă cafenele, cluburi sportive și stații de transport. Curat și cald iarna, încălzire autonomă.", en: "Located on bd. Moscova near cafes, sports clubs, and trolleybus lines. Clean and warm in winter, autonomous heating.", ru: "Расположена на Московском проспекте рядом с кафе, фитнесом и транспортом. Тёплая и светлая, автономное отопление." }
+  },
+  "apt-5": {
+    title: { ro: "Apartament bloc nou cu 2 camere în Ciocana", en: "New build 2-room apartment in Ciocana", ru: "Новострой: 2-комнатная квартира на Чеканах" },
+    description: { ro: "Complex rezidențial nou cu supraveghere video și curte liniștită. Ideal pentru studenți sau tineri care lucrează de acasă.", en: "New residential complex with video surveillance and quiet courtyard. Ideal for budget-conscious students or young remote workers.", ru: "Новый жилой комплекс с видеонаблюдением и тихим двором. Отлично подойдёт для студентов или работающих удалённо." }
+  },
+  "apt-6": {
+    title: { ro: "Duplex cu curte privată în Telecentru", en: "Duplex with private courtyard in Telecentru", ru: "Дуплекс с закрытым двориком на Телецентре" },
+    description: { ro: "Oază verde departe de agitația orașului. Aer curat, parcare privată și o mică peluză pentru relaxare afară.", en: "Green oasis away from city noise. Fresh air, private parking, and a small lawn to relax or work outside.", ru: "Зелёный оазис вдали от городского шума. Свежий воздух, частная парковка и лужайка для отдыха на воздухе." }
+  },
+  "apt-7": {
+    title: { ro: "Apartament de design cu 2 camere pe bd. Ștefan cel Mare", en: "Design 2-room flat on bd. Ștefan cel Mare", ru: "Дизайнерская 2-комнатная квартира на бул. Штефан чел Маре" },
+    description: { ro: "Adresă centrală de prestigiu cu vedere spre bulevardul principal. Internet de mare viteză, cafenele primitoare în jur.", en: "Premium central address overlooking the main boulevard. High speed internet, cozy coffee nooks nearby, perfect for young professionals.", ru: "Престижный центральный адрес с видом на главный бульвар. Скоростной интернет, уютные кофейни рядом." }
+  },
+  "apt-8": {
+    title: { ro: "Apartament liniștit cu 2 camere lângă Parcul Dendrariu", en: "Quiet 2-room flat near Dendrariu Park", ru: "Тихая 2-комнатная квартира возле парка Дендрарий" }
+  }
+};
+
+export function getLocalizedContent(str, lang = 'ro') {
+  if (typeof str !== 'string') return str;
+  const match = LOCALIZED_DICTIONARY[str];
+  if (match) {
+    return match[lang] || match['ro'] || match['en'] || str;
+  }
+  return str;
+}
+
+export function getLocalizedField(item, field, lang = 'ro') {
+  if (!item) return '';
+  const val = item[field];
+  if (val === undefined || val === null) return '';
+
+  // 1. If val is an object with lang keys (e.g. { ro: '...', en: '...', ru: '...' })
+  if (typeof val === 'object' && !Array.isArray(val)) {
+    return val[lang] || val['ro'] || val['en'] || val['ru'] || '';
+  }
+
+  // 2. If val is an array (e.g. amenities, badges, similarHabits)
+  if (Array.isArray(val)) {
+    return val.map(entry => {
+      if (typeof entry === 'object' && entry !== null) {
+        return entry[lang] || entry['ro'] || entry['en'] || '';
+      }
+      return getLocalizedContent(entry, lang);
+    });
+  }
+
+  // 3. Check CONTENT_TRANSLATIONS table by item.id
+  if (item.id && CONTENT_TRANSLATIONS[item.id]?.[field]) {
+    const tEntry = CONTENT_TRANSLATIONS[item.id][field];
+    if (typeof tEntry === 'object') {
+      return tEntry[lang] || tEntry['ro'] || tEntry['en'] || tEntry['ru'] || val;
+    }
+  }
+
+  // 4. If val is a string, check dictionary mappings (amenities, occupations, lifestyle tags, districts)
+  if (typeof val === 'string') {
+    return getLocalizedContent(val, lang);
+  }
+
+  return val;
+}
+
+export const MIHAI_PROFILE = {
+  id: "mihai-ceban",
+  name: "Mihai Ceban",
+  age: 22,
+  gender: "Male",
+  district: "Botanica",
+  districtsAllowed: ["Botanica", "Centru"],
+  headline: "Student & Junior Dev seeking flatmate in Botanica or Centru",
+  bio: "Calm and clean student looking for a good roommate. I cook simple meals, enjoy quiet evenings, and always pay bills on time.",
+  occupation: "Student & Junior Developer",
+  university: "UTM Computer Science",
+  languages: ["Romanian", "English", "Russian"],
+  budgetMin: 220,
+  budgetMax: 320,
+  budgetFormatted: "€220–320 / month",
+  moveInDate: "October 20, 2026",
+  moveInKey: "october",
+  avatar: "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=400&q=80",
+  verifiedEmail: true,
+  verifiedPhone: true,
+  verifiedStudent: true,
+  apartmentStatus: "wants_teamup",
+  apartmentDetails: null,
+  lookingFor: "Looking for a clean, friendly flatmate to share rent.",
+  badges: ["Student", "Non-smoker", "Clean", "Quiet"],
+  lifestyle: {
+    smoking: "Non-smoker",
+    pets: "No pets",
+    cleanliness: "Very tidy",
+    cleanlinessLevel: 85,
+    sociability: "Calm & Quiet",
+    sociabilityLevel: 40,
+    guests: "Rarely",
+    guestsLevel: 20,
+    schedule: "Early bird",
+    scheduleLevel: 30,
+    wfh: "Sometimes"
+  },
+  compatibility: 94,
+  compatibilityBreakdown: { budget: 95, lifestyle: 92, location: 95, moveIn: 90, total: 94 },
+  similarHabits: ["Non-smoker", "Clean kitchen policy", "Same budget", "Quiet nights"]
+};
+
 
 // 12 REALISTIC TEST USERS FROM CHIȘINĂU
 export const ROOMMATES = [
@@ -1023,7 +1447,7 @@ export const ROOMMATES = [
       district: "Ciocana",
       address: "bd. Mircea cel Bătrîn 24, Ciocana",
       availableFrom: "Immediate",
-      image: "https://images.unsplash.com/photo-1540518614846-7ede433c4ef3?auto=format&fit=crop&w=800&q=80"
+      image: "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=800&q=80"
     },
     lookingFor: "Looking for a female student or young worker for the second private room in Ciocana near green boulevard.",
     badges: ["Student", "Non-smoker", "Yoga", "Quiet", "Affordable"],
@@ -1138,7 +1562,7 @@ export const ROOMMATES = [
       district: "Buiucani",
       address: "str. Ion Creangă 45, Buiucani",
       availableFrom: "October 18, 2026",
-      image: "https://images.unsplash.com/photo-1502005229762-ee1b2da94088?auto=format&fit=crop&w=800&q=80"
+      image: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80"
     },
     lookingFor: "Looking for a quiet, clean girl to occupy the master bedroom in Buiucani.",
     badges: ["Student", "Non-smoker", "Park nearby", "Clean", "Responsible"],
@@ -1275,7 +1699,8 @@ export const ROOMMATES = [
       "Appreciates cozy home",
       "WFH flexible"
     ]
-  }
+  },
+  MIHAI_PROFILE
 ];
 
 // 8 REALISTIC TEST APARTMENTS IN CHIȘINĂU (EUR PRICING + SMOKER & CHILDREN FLAGS + LANDLORD INFO)
@@ -1301,9 +1726,10 @@ export const APARTMENTS = [
     images: [
       "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1000&q=80",
       "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1540518614846-7ede433c4ef3?auto=format&fit=crop&w=1000&q=80"
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1000&q=80"
     ],
     roommatesNeeded: 1,
+    interestedRoommates: ["maria-colesnic", "irina-rotaru"],
     currentRoommate: {
       id: "anna-moraru",
       name: "Anna Moraru",
@@ -1340,11 +1766,12 @@ export const APARTMENTS = [
     childrenAllowed: true, // Children friendly
     amenities: ["Wi-Fi", "Washing machine", "Balcony", "2 Bathrooms", "Autonomous heating", "Parking"],
     images: [
-      "https://images.unsplash.com/photo-1502005229762-ee1b2da94088?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1000&q=80",
       "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80",
       "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1000&q=80"
     ],
     roommatesNeeded: 2,
+    interestedRoommates: ["mihaela-croitoru", "dan-rusu"],
     currentRoommate: {
       id: "vlad-moraru",
       name: "Vlad Moraru",
@@ -1386,6 +1813,7 @@ export const APARTMENTS = [
       "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80"
     ],
     roommatesNeeded: 1,
+    interestedRoommates: ["irina-rotaru", "cristian-lungu"],
     currentRoommate: {
       id: "elena-ceban",
       name: "Elena Ceban",
@@ -1427,6 +1855,7 @@ export const APARTMENTS = [
       "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1000&q=80"
     ],
     roommatesNeeded: 1,
+    interestedRoommates: ["mihaela-croitoru", "maria-colesnic"],
     currentRoommate: {
       id: "dan-rusu",
       name: "Dan Rusu",
@@ -1463,11 +1892,12 @@ export const APARTMENTS = [
     childrenAllowed: true, // Children friendly
     amenities: ["Wi-Fi", "Washing machine", "Balcony", "Modern elevator", "Underground parking option", "Low utilities"],
     images: [
-      "https://images.unsplash.com/photo-1540518614846-7ede433c4ef3?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1000&q=80",
       "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80",
       "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1000&q=80"
     ],
     roommatesNeeded: 1,
+    interestedRoommates: ["alexandru-sirbu", "dan-rusu"],
     currentRoommate: {
       id: "daria-bostan",
       name: "Daria Bostan",
@@ -1509,6 +1939,7 @@ export const APARTMENTS = [
       "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1000&q=80"
     ],
     roommatesNeeded: 1,
+    interestedRoommates: ["maxim-lupu", "cristian-lungu"],
     currentRoommate: {
       id: "alexandru-sirbu",
       name: "Alexandru Sîrbu",
@@ -1550,6 +1981,7 @@ export const APARTMENTS = [
       "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1000&q=80"
     ],
     roommatesNeeded: 1,
+    interestedRoommates: ["maria-colesnic", "cristian-lungu"],
     currentRoommate: {
       id: "maxim-lupu",
       name: "Maxim Lupu",
@@ -1587,10 +2019,11 @@ export const APARTMENTS = [
     amenities: ["Wi-Fi", "Washing machine", "Park view", "Balcony", "Fridge", "Quiet neighbors"],
     images: [
       "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80",
-      "https://images.unsplash.com/photo-1540518614846-7ede433c4ef3?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1000&q=80",
       "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1000&q=80"
     ],
     roommatesNeeded: 1,
+    interestedRoommates: ["vlad-moraru", "maria-colesnic"],
     currentRoommate: {
       id: "victoria-gutu",
       name: "Victoria Guțu",
@@ -1607,6 +2040,726 @@ export const APARTMENTS = [
       languages: "RO, RU"
     },
     description: "Calm and green location 3 minutes walk to Dendrariu park. Sunlit rooms, separate entrance to each room, friendly owner."
+  },
+  {
+    id: "apt-9",
+    title: "Bright 2-room flat on str. Alexei Mateevici",
+    district: "Centru",
+    address: "str. Alexei Mateevici 60, Centru, Chișinău",
+    lat: 47.0228,
+    lng: 28.8302,
+    priceTotal: 580,
+    pricePerPerson: 290,
+    rooms: 2,
+    area: 55,
+    availableFrom: "November 1, 2026",
+    furnished: true,
+    utilitiesIncluded: false,
+    petsAllowed: false,
+    smokingAllowed: false,
+    childrenAllowed: false,
+    amenities: ["Wi-Fi","Washing machine","Air conditioning","Central location","Autonomous heating"],
+    images: [
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80"
+    ],
+    roommatesNeeded: 1,
+    interestedRoommates: ["irina-rotaru", "maxim-lupu"],
+    currentRoommate: null,
+    landlord: {
+      name: "Mihai Țurcanu",
+      phone: "+373 69 210 331",
+      whatsapp: "37369210331",
+      verified: true,
+      responseTime: "Usually replies in 20 mins",
+      languages: "RO, RU"
+    },
+    description: "Renovated flat a 5-minute walk from the Library and Moldova State University. Two separate bedrooms, shared kitchen, cafés and bus stops at the door."
+  },
+  {
+    id: "apt-10",
+    title: "Student-friendly 3-room on str. București",
+    district: "Centru",
+    address: "str. București 68, Centru, Chișinău",
+    lat: 47.0189,
+    lng: 28.8341,
+    priceTotal: 720,
+    pricePerPerson: 240,
+    rooms: 3,
+    area: 72,
+    availableFrom: "October 25, 2026",
+    furnished: true,
+    utilitiesIncluded: false,
+    petsAllowed: false,
+    smokingAllowed: false,
+    childrenAllowed: false,
+    amenities: ["Wi-Fi","Washing machine","Dishwasher","Balcony","Elevator"],
+    images: [
+      "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1000&q=80"
+    ],
+    roommatesNeeded: 2,
+    interestedRoommates: ["cristian-lungu", "irina-rotaru"],
+    currentRoommate: null,
+    landlord: {
+      name: "Ludmila Popescu",
+      phone: "+373 68 442 107",
+      whatsapp: "37368442107",
+      verified: true,
+      responseTime: "Usually replies in 20 mins",
+      languages: "RO, RU, EN"
+    },
+    description: "Spacious 3-room apartment near the Cathedral Park and Central Market. Each room has a desk and wardrobe; quiet courtyard."
+  },
+  {
+    id: "apt-11",
+    title: "Cozy 2-room near Ștefan cel Mare Park",
+    district: "Centru",
+    address: "str. 31 August 1989 41, Centru, Chișinău",
+    lat: 47.0261,
+    lng: 28.8277,
+    priceTotal: 540,
+    pricePerPerson: 270,
+    rooms: 2,
+    area: 52,
+    availableFrom: "Immediate",
+    furnished: true,
+    utilitiesIncluded: false,
+    petsAllowed: true,
+    smokingAllowed: false,
+    childrenAllowed: false,
+    amenities: ["Wi-Fi","Washing machine","Air conditioning","Pet friendly","Balcony"],
+    images: [
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1000&q=80"
+    ],
+    roommatesNeeded: 1,
+    interestedRoommates: ["maxim-lupu", "cristian-lungu"],
+    currentRoommate: null,
+    landlord: {
+      name: "Andrei Gîrbu",
+      phone: "+373 79 118 560",
+      whatsapp: "37379118560",
+      verified: true,
+      responseTime: "Usually replies in 20 mins",
+      languages: "RO, EN"
+    },
+    description: "Pet-friendly flat steps away from the park and Piața Marii Adunări Naționale. Fully furnished, quick move-in."
+  },
+  {
+    id: "apt-12",
+    title: "Modern 2-room on bd. Dacia",
+    district: "Botanica",
+    address: "bd. Dacia 25, Botanica, Chișinău",
+    lat: 46.9818,
+    lng: 28.8613,
+    priceTotal: 460,
+    pricePerPerson: 230,
+    rooms: 2,
+    area: 54,
+    availableFrom: "November 5, 2026",
+    furnished: true,
+    utilitiesIncluded: false,
+    petsAllowed: false,
+    smokingAllowed: false,
+    childrenAllowed: false,
+    amenities: ["Wi-Fi","Washing machine","Balcony","Elevator","Autonomous heating"],
+    images: [
+      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&w=1000&q=80"
+    ],
+    roommatesNeeded: 1,
+    interestedRoommates: ["maria-colesnic", "mihaela-croitoru"],
+    currentRoommate: null,
+    landlord: {
+      name: "Svetlana Railean",
+      phone: "+373 69 774 092",
+      whatsapp: "37369774092",
+      verified: true,
+      responseTime: "Usually replies in 20 mins",
+      languages: "RO, RU"
+    },
+    description: "Well-connected flat on bd. Dacia with trolleybus lines to the center. Supermarket and gym in the same block."
+  },
+  {
+    id: "apt-13",
+    title: "3-room flat for students on str. Cuza Vodă",
+    district: "Botanica",
+    address: "str. Cuza Vodă 21, Botanica, Chișinău",
+    lat: 46.9921,
+    lng: 28.8574,
+    priceTotal: 630,
+    pricePerPerson: 210,
+    rooms: 3,
+    area: 68,
+    availableFrom: "October 30, 2026",
+    furnished: true,
+    utilitiesIncluded: false,
+    petsAllowed: false,
+    smokingAllowed: true,
+    childrenAllowed: false,
+    amenities: ["Wi-Fi","Washing machine","Balcony","Parking","Autonomous heating"],
+    images: [
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=1000&q=80"
+    ],
+    roommatesNeeded: 2,
+    interestedRoommates: ["maria-colesnic", "dan-rusu"],
+    currentRoommate: null,
+    landlord: {
+      name: "Tudor Vozian",
+      phone: "+373 78 305 641",
+      whatsapp: "37378305641",
+      verified: true,
+      responseTime: "Usually replies in 20 mins",
+      languages: "RO, RU, EN"
+    },
+    description: "Affordable 3-room apartment close to the Technical University dorms. Large shared living room and fast internet."
+  },
+  {
+    id: "apt-14",
+    title: "Quiet 2-room on str. Grenoble",
+    district: "Botanica",
+    address: "str. Grenoble 159, Botanica, Chișinău",
+    lat: 46.9772,
+    lng: 28.8684,
+    priceTotal: 440,
+    pricePerPerson: 220,
+    rooms: 2,
+    area: 50,
+    availableFrom: "Immediate",
+    furnished: true,
+    utilitiesIncluded: false,
+    petsAllowed: true,
+    smokingAllowed: false,
+    childrenAllowed: false,
+    amenities: ["Wi-Fi","Washing machine","Air conditioning","Pet friendly","Elevator"],
+    images: [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1000&q=80"
+    ],
+    roommatesNeeded: 1,
+    interestedRoommates: ["irina-rotaru", "alexandru-sirbu"],
+    currentRoommate: null,
+    landlord: {
+      name: "Mihai Țurcanu",
+      phone: "+373 69 210 331",
+      whatsapp: "37369210331",
+      verified: true,
+      responseTime: "Usually replies in 20 mins",
+      languages: "RO, RU"
+    },
+    description: "Calm residential street near the Botanical Garden. Bright rooms, new appliances and a private balcony."
+  },
+  {
+    id: "apt-15",
+    title: "Furnished 2-room on str. Kiev",
+    district: "Rîșcani",
+    address: "str. Kiev 4, Rîșcani, Chișinău",
+    lat: 47.0412,
+    lng: 28.8567,
+    priceTotal: 500,
+    pricePerPerson: 250,
+    rooms: 2,
+    area: 56,
+    availableFrom: "November 1, 2026",
+    furnished: true,
+    utilitiesIncluded: false,
+    petsAllowed: false,
+    smokingAllowed: false,
+    childrenAllowed: false,
+    amenities: ["Wi-Fi","Washing machine","Balcony","Elevator","Autonomous heating"],
+    images: [
+      "https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1502672023488-70e25813eb80?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&w=1000&q=80"
+    ],
+    roommatesNeeded: 1,
+    interestedRoommates: ["dan-rusu", "mihaela-croitoru"],
+    currentRoommate: null,
+    landlord: {
+      name: "Ludmila Popescu",
+      phone: "+373 68 442 107",
+      whatsapp: "37368442107",
+      verified: true,
+      responseTime: "Usually replies in 20 mins",
+      languages: "RO, RU, EN"
+    },
+    description: "Modern flat near the Rîșcani market and Sun City mall. Direct buses to the university campuses."
+  },
+  {
+    id: "apt-16",
+    title: "Budget 3-room near Petricani",
+    district: "Rîșcani",
+    address: "str. Petricani 21, Rîșcani, Chișinău",
+    lat: 47.0495,
+    lng: 28.8689,
+    priceTotal: 600,
+    pricePerPerson: 200,
+    rooms: 3,
+    area: 66,
+    availableFrom: "October 20, 2026",
+    furnished: true,
+    utilitiesIncluded: false,
+    petsAllowed: false,
+    smokingAllowed: true,
+    childrenAllowed: true,
+    amenities: ["Wi-Fi","Washing machine","Parking","Balcony","Autonomous heating"],
+    images: [
+      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1000&q=80"
+    ],
+    roommatesNeeded: 2,
+    interestedRoommates: ["dan-rusu", "maxim-lupu"],
+    currentRoommate: null,
+    landlord: {
+      name: "Andrei Gîrbu",
+      phone: "+373 79 118 560",
+      whatsapp: "37379118560",
+      verified: true,
+      responseTime: "Usually replies in 20 mins",
+      languages: "RO, EN"
+    },
+    description: "Budget-friendly shared flat near Lake Petricani. Smokers allowed on the balcony; quiet at night."
+  },
+  {
+    id: "apt-17",
+    title: "Sunny 2-room on Calea Orheiului",
+    district: "Rîșcani",
+    address: "Calea Orheiului 109, Rîșcani, Chișinău",
+    lat: 47.0463,
+    lng: 28.8601,
+    priceTotal: 470,
+    pricePerPerson: 235,
+    rooms: 2,
+    area: 53,
+    availableFrom: "November 10, 2026",
+    furnished: true,
+    utilitiesIncluded: false,
+    petsAllowed: true,
+    smokingAllowed: false,
+    childrenAllowed: false,
+    amenities: ["Wi-Fi","Washing machine","Air conditioning","Pet friendly","Elevator"],
+    images: [
+      "https://images.unsplash.com/photo-1574362848149-11496d93a7c7?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1000&q=80"
+    ],
+    roommatesNeeded: 1,
+    interestedRoommates: ["mihaela-croitoru", "vlad-moraru"],
+    currentRoommate: null,
+    landlord: {
+      name: "Svetlana Railean",
+      phone: "+373 69 774 092",
+      whatsapp: "37369774092",
+      verified: true,
+      responseTime: "Usually replies in 20 mins",
+      languages: "RO, RU"
+    },
+    description: "Renovated apartment with views over the Orheiului axis. Easy access to the ring road and trolleybus 22."
+  },
+  {
+    id: "apt-18",
+    title: "Modern 2-room on str. Miorița",
+    district: "Buiucani",
+    address: "str. Miorița 12, Buiucani, Chișinău",
+    lat: 47.0449,
+    lng: 28.8091,
+    priceTotal: 490,
+    pricePerPerson: 245,
+    rooms: 2,
+    area: 54,
+    availableFrom: "November 1, 2026",
+    furnished: true,
+    utilitiesIncluded: false,
+    petsAllowed: false,
+    smokingAllowed: false,
+    childrenAllowed: false,
+    amenities: ["Wi-Fi","Washing machine","Dishwasher","Balcony","Elevator"],
+    images: [
+      "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&w=1000&q=80"
+    ],
+    roommatesNeeded: 1,
+    interestedRoommates: ["vlad-moraru", "maria-colesnic"],
+    currentRoommate: null,
+    landlord: {
+      name: "Tudor Vozian",
+      phone: "+373 78 305 641",
+      whatsapp: "37378305641",
+      verified: true,
+      responseTime: "Usually replies in 20 mins",
+      languages: "RO, RU, EN"
+    },
+    description: "Energy-efficient building in a green part of Buiucani. Near Linella and the Buiucani park."
+  },
+  {
+    id: "apt-19",
+    title: "Shared 3-room on str. Constantin Vîrnav",
+    district: "Buiucani",
+    address: "str. Constantin Vîrnav 9, Buiucani, Chișinău",
+    lat: 47.0392,
+    lng: 28.8118,
+    priceTotal: 645,
+    pricePerPerson: 215,
+    rooms: 3,
+    area: 70,
+    availableFrom: "October 28, 2026",
+    furnished: true,
+    utilitiesIncluded: false,
+    petsAllowed: true,
+    smokingAllowed: false,
+    childrenAllowed: false,
+    amenities: ["Wi-Fi","Washing machine","Pet friendly","Balcony","Autonomous heating"],
+    images: [
+      "https://images.unsplash.com/photo-1560185893-a55cbc8c57e8?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1554995207-c18c203602cb?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&w=1000&q=80"
+    ],
+    roommatesNeeded: 2,
+    interestedRoommates: ["vlad-moraru", "irina-rotaru"],
+    currentRoommate: null,
+    landlord: {
+      name: "Mihai Țurcanu",
+      phone: "+373 69 210 331",
+      whatsapp: "37369210331",
+      verified: true,
+      responseTime: "Usually replies in 20 mins",
+      languages: "RO, RU"
+    },
+    description: "Roomy 3-bedroom flat with a shared study corner. Close to USM and the Buiucani bus terminal."
+  },
+  {
+    id: "apt-20",
+    title: "Renovated 2-room on bd. Mircea cel Bătrîn",
+    district: "Ciocana",
+    address: "bd. Mircea cel Bătrîn 36, Ciocana, Chișinău",
+    lat: 47.0462,
+    lng: 28.8918,
+    priceTotal: 420,
+    pricePerPerson: 210,
+    rooms: 2,
+    area: 52,
+    availableFrom: "November 1, 2026",
+    furnished: true,
+    utilitiesIncluded: false,
+    petsAllowed: false,
+    smokingAllowed: false,
+    childrenAllowed: false,
+    amenities: ["Wi-Fi","Washing machine","Balcony","Elevator","Autonomous heating"],
+    images: [
+      "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1595526114035-0d45ed16cfbf?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=1000&q=80"
+    ],
+    roommatesNeeded: 1,
+    interestedRoommates: ["alexandru-sirbu", "dan-rusu"],
+    currentRoommate: null,
+    landlord: {
+      name: "Ludmila Popescu",
+      phone: "+373 68 442 107",
+      whatsapp: "37368442107",
+      verified: true,
+      responseTime: "Usually replies in 20 mins",
+      languages: "RO, RU, EN"
+    },
+    description: "Fresh renovation on the main Ciocana boulevard; Ciocana market and Metro City mall within walking distance."
+  },
+  {
+    id: "apt-21",
+    title: "Budget 3-room on str. Otovasca",
+    district: "Ciocana",
+    address: "str. Otovasca 29, Ciocana, Chișinău",
+    lat: 47.0334,
+    lng: 28.8987,
+    priceTotal: 585,
+    pricePerPerson: 195,
+    rooms: 3,
+    area: 64,
+    availableFrom: "October 22, 2026",
+    furnished: true,
+    utilitiesIncluded: false,
+    petsAllowed: false,
+    smokingAllowed: true,
+    childrenAllowed: false,
+    amenities: ["Wi-Fi","Washing machine","Balcony","Parking"],
+    images: [
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1502672023488-70e25813eb80?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&w=1000&q=80"
+    ],
+    roommatesNeeded: 2,
+    interestedRoommates: ["maxim-lupu", "alexandru-sirbu"],
+    currentRoommate: null,
+    landlord: {
+      name: "Andrei Gîrbu",
+      phone: "+373 79 118 560",
+      whatsapp: "37379118560",
+      verified: true,
+      responseTime: "Usually replies in 20 mins",
+      languages: "RO, EN"
+    },
+    description: "Affordable shared apartment with three private rooms and a big kitchen. Frequent minibuses to the center."
+  },
+  {
+    id: "apt-22",
+    title: "Cozy 2-room on str. Voluntarilor",
+    district: "Ciocana",
+    address: "str. Voluntarilor 5, Ciocana, Chișinău",
+    lat: 47.0398,
+    lng: 28.8856,
+    priceTotal: 410,
+    pricePerPerson: 205,
+    rooms: 2,
+    area: 49,
+    availableFrom: "Immediate",
+    furnished: true,
+    utilitiesIncluded: false,
+    petsAllowed: true,
+    smokingAllowed: false,
+    childrenAllowed: false,
+    amenities: ["Wi-Fi","Washing machine","Pet friendly","Air conditioning"],
+    images: [
+      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?auto=format&fit=crop&w=1000&q=80"
+    ],
+    roommatesNeeded: 1,
+    interestedRoommates: ["dan-rusu", "cristian-lungu"],
+    currentRoommate: null,
+    landlord: {
+      name: "Svetlana Railean",
+      phone: "+373 69 774 092",
+      whatsapp: "37369774092",
+      verified: true,
+      responseTime: "Usually replies in 20 mins",
+      languages: "RO, RU"
+    },
+    description: "Move-in ready flat in a quiet courtyard near Parcul Ciocana."
+  },
+  {
+    id: "apt-23",
+    title: "Bright 2-room on Calea Ieșilor",
+    district: "Telecentru",
+    address: "Calea Ieșilor 20, Telecentru, Chișinău",
+    lat: 47.0277,
+    lng: 28.8112,
+    priceTotal: 510,
+    pricePerPerson: 255,
+    rooms: 2,
+    area: 55,
+    availableFrom: "November 5, 2026",
+    furnished: true,
+    utilitiesIncluded: false,
+    petsAllowed: false,
+    smokingAllowed: false,
+    childrenAllowed: false,
+    amenities: ["Wi-Fi","Washing machine","Air conditioning","Balcony","Elevator"],
+    images: [
+      "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1493809842364-78817add7ffb?auto=format&fit=crop&w=1000&q=80"
+    ],
+    roommatesNeeded: 1,
+    interestedRoommates: ["alexandru-sirbu", "maxim-lupu"],
+    currentRoommate: null,
+    landlord: {
+      name: "Tudor Vozian",
+      phone: "+373 78 305 641",
+      whatsapp: "37378305641",
+      verified: true,
+      responseTime: "Usually replies in 20 mins",
+      languages: "RO, RU, EN"
+    },
+    description: "Light-filled apartment close to the Valea Morilor connection and ASEM campus."
+  },
+  {
+    id: "apt-24",
+    title: "Spacious 3-room on bd. Decebal",
+    district: "Telecentru",
+    address: "bd. Decebal 80, Telecentru, Chișinău",
+    lat: 46.9998,
+    lng: 28.8221,
+    priceTotal: 690,
+    pricePerPerson: 230,
+    rooms: 3,
+    area: 71,
+    availableFrom: "October 30, 2026",
+    furnished: true,
+    utilitiesIncluded: false,
+    petsAllowed: false,
+    smokingAllowed: true,
+    childrenAllowed: false,
+    amenities: ["Wi-Fi","Washing machine","Dishwasher","Parking","Balcony"],
+    images: [
+      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&w=1000&q=80"
+    ],
+    roommatesNeeded: 2,
+    interestedRoommates: ["alexandru-sirbu", "cristian-lungu"],
+    currentRoommate: null,
+    landlord: {
+      name: "Mihai Țurcanu",
+      phone: "+373 69 210 331",
+      whatsapp: "37369210331",
+      verified: true,
+      responseTime: "Usually replies in 20 mins",
+      languages: "RO, RU"
+    },
+    description: "Large 3-room flat with a shared living room; Decebal boulevard bus stop at the entrance."
+  },
+  {
+    id: "apt-25",
+    title: "Compact 2-room on str. Sarmizegetusa",
+    district: "Telecentru",
+    address: "str. Sarmizegetusa 17, Telecentru, Chișinău",
+    lat: 47.0043,
+    lng: 28.8174,
+    priceTotal: 450,
+    pricePerPerson: 225,
+    rooms: 2,
+    area: 48,
+    availableFrom: "Immediate",
+    furnished: true,
+    utilitiesIncluded: false,
+    petsAllowed: true,
+    smokingAllowed: false,
+    childrenAllowed: false,
+    amenities: ["Wi-Fi","Washing machine","Pet friendly","Autonomous heating"],
+    images: [
+      "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?auto=format&fit=crop&w=1000&q=80"
+    ],
+    roommatesNeeded: 1,
+    interestedRoommates: ["maria-colesnic", "alexandru-sirbu"],
+    currentRoommate: null,
+    landlord: {
+      name: "Ludmila Popescu",
+      phone: "+373 68 442 107",
+      whatsapp: "37368442107",
+      verified: true,
+      responseTime: "Usually replies in 20 mins",
+      languages: "RO, RU, EN"
+    },
+    description: "Budget-friendly flat in a calm neighbourhood; shops and a pharmacy on the ground floor."
+  },
+  {
+    id: "apt-26",
+    title: "Modern 2-room on Calea Basarabiei",
+    district: "Poșta Veche",
+    address: "Calea Basarabiei 13, Poșta Veche, Chișinău",
+    lat: 46.9851,
+    lng: 28.8902,
+    priceTotal: 430,
+    pricePerPerson: 215,
+    rooms: 2,
+    area: 51,
+    availableFrom: "November 1, 2026",
+    furnished: true,
+    utilitiesIncluded: false,
+    petsAllowed: false,
+    smokingAllowed: false,
+    childrenAllowed: false,
+    amenities: ["Wi-Fi","Washing machine","Balcony","Elevator","Autonomous heating"],
+    images: [
+      "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&w=1000&q=80"
+    ],
+    roommatesNeeded: 1,
+    interestedRoommates: ["maria-colesnic", "dan-rusu"],
+    currentRoommate: null,
+    landlord: {
+      name: "Andrei Gîrbu",
+      phone: "+373 79 118 560",
+      whatsapp: "37379118560",
+      verified: true,
+      responseTime: "Usually replies in 20 mins",
+      languages: "RO, EN"
+    },
+    description: "Newly built block near the Poșta Veche bus stop with a direct line to the center."
+  },
+  {
+    id: "apt-27",
+    title: "Budget 3-room on str. Mihail Sadoveanu",
+    district: "Poșta Veche",
+    address: "str. Mihail Sadoveanu 12, Poșta Veche, Chișinău",
+    lat: 46.9916,
+    lng: 28.8961,
+    priceTotal: 600,
+    pricePerPerson: 200,
+    rooms: 3,
+    area: 65,
+    availableFrom: "October 25, 2026",
+    furnished: true,
+    utilitiesIncluded: false,
+    petsAllowed: false,
+    smokingAllowed: true,
+    childrenAllowed: true,
+    amenities: ["Wi-Fi","Washing machine","Parking","Balcony"],
+    images: [
+      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1567016432779-094069958ea5?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1502672023488-70e25813eb80?auto=format&fit=crop&w=1000&q=80"
+    ],
+    roommatesNeeded: 2,
+    interestedRoommates: ["maxim-lupu", "irina-rotaru"],
+    currentRoommate: null,
+    landlord: {
+      name: "Svetlana Railean",
+      phone: "+373 69 774 092",
+      whatsapp: "37369774092",
+      verified: true,
+      responseTime: "Usually replies in 20 mins",
+      languages: "RO, RU"
+    },
+    description: "Large flat for 3 students in a quiet residential area. Grocery store and sports ground nearby."
+  },
+  {
+    id: "apt-28",
+    title: "Sunny 2-room near Poșta Veche park",
+    district: "Poșta Veche",
+    address: "str. Sarmizegetusa 4, Poșta Veche, Chișinău",
+    lat: 46.9784,
+    lng: 28.8847,
+    priceTotal: 440,
+    pricePerPerson: 220,
+    rooms: 2,
+    area: 50,
+    availableFrom: "Immediate",
+    furnished: true,
+    utilitiesIncluded: false,
+    petsAllowed: true,
+    smokingAllowed: false,
+    childrenAllowed: false,
+    amenities: ["Wi-Fi","Washing machine","Pet friendly","Air conditioning"],
+    images: [
+      "https://images.unsplash.com/photo-1502672023488-70e25813eb80?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1560185127-6ed189bf02f4?auto=format&fit=crop&w=1000&q=80",
+      "https://images.unsplash.com/photo-1598928506311-c55ded91a20c?auto=format&fit=crop&w=1000&q=80"
+    ],
+    roommatesNeeded: 1,
+    interestedRoommates: ["cristian-lungu", "mihaela-croitoru"],
+    currentRoommate: null,
+    landlord: {
+      name: "Tudor Vozian",
+      phone: "+373 78 305 641",
+      whatsapp: "37378305641",
+      verified: true,
+      responseTime: "Usually replies in 20 mins",
+      languages: "RO, RU, EN"
+    },
+    description: "Bright, furnished apartment with a south-facing balcony, 10 minutes from the center by minibus."
   }
 ];
 
