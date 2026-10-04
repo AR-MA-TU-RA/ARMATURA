@@ -3,7 +3,7 @@ import {
   Sparkles, MessageSquare, UserPlus, Heart, Check, 
   MapPin, Calendar, ShieldCheck, ArrowRight, Filter
 } from 'lucide-react';
-import { ROOMMATES, TRANSLATIONS } from '../data/mockData';
+import { ROOMMATES, TRANSLATIONS, getLocalizedContent, getLocalizedField } from '../data/mockData';
 
 export default function MatchesPage({ 
   onSelectPerson, 
@@ -65,43 +65,50 @@ export default function MatchesPage({
           return (
             <div
               key={person.id}
-              className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl p-6 shadow-sm hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition duration-200 flex flex-col justify-between"
+              className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl p-5 sm:p-6 shadow-sm hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition duration-200 flex flex-col justify-between group"
             >
               <div>
-                {/* Header: Photo, Name, Compatibility */}
-                <div className="flex items-start justify-between gap-4 mb-4">
-                  <div className="flex items-center gap-3.5">
-                    <div className="relative w-14 h-14 rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 shrink-0">
+                {/* Header: Photo, Name, Details, Compatibility */}
+                <div className="flex flex-col sm:flex-row items-center sm:items-start justify-between gap-4 mb-4">
+                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left w-full sm:w-auto">
+                    {/* Large Modern Avatar */}
+                    <div 
+                      onClick={() => onSelectPerson(person)}
+                      className="relative w-28 h-28 sm:w-24 sm:h-24 md:w-20 md:h-20 rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800 border-2 border-slate-200/80 dark:border-slate-700 shrink-0 cursor-pointer shadow-sm mx-auto sm:mx-0"
+                    >
                       <img
                         src={person.avatar}
                         alt={person.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
                       />
-                      <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full" />
+                      <span className="absolute bottom-1 right-1 w-3.5 h-3.5 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full" />
                     </div>
 
-                    <div>
-                      <div className="flex items-center gap-1.5">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap items-center justify-center sm:justify-start gap-1.5">
                         <h3 
                           onClick={() => onSelectPerson(person)}
-                          className="font-extrabold text-slate-900 dark:text-white text-lg hover:text-blue-600 dark:hover:text-blue-400 cursor-pointer"
+                          className="font-extrabold text-slate-900 dark:text-white text-xl sm:text-lg hover:text-blue-600 dark:hover:text-blue-400 transition cursor-pointer"
                         >
                           {person.name}, {person.age}
                         </h3>
-                        <ShieldCheck className="w-4 h-4 text-blue-600" />
+                        <ShieldCheck className="w-4 h-4 text-blue-600 shrink-0" />
                       </div>
-                      <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-                        {person.occupation}
+                      <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium mt-0.5">
+                        {getLocalizedContent(person.occupation, language)}
                       </div>
-                      <div className="flex items-center gap-1 text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
-                        <MapPin className="w-3 h-3 text-blue-600" />
-                        <span>{person.district}</span>
+                      <div className="flex flex-wrap items-center justify-center sm:justify-start gap-1.5 text-xs font-semibold text-slate-500 dark:text-slate-400 mt-1.5">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300">
+                          <MapPin className="w-3 h-3 text-blue-600" />
+                          <span>{getLocalizedContent(person.district, language)}</span>
+                        </span>
                         <span>•</span>
-                        <span className="font-semibold text-blue-700 dark:text-blue-400">{person.budgetFormatted}</span>
+                        <span className="font-bold text-blue-700 dark:text-blue-400">{person.budgetFormatted}</span>
                       </div>
                     </div>
                   </div>
 
+                  {/* Compatibility Badge */}
                   <div className="px-3 py-1.5 rounded-full text-xs font-black bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 flex items-center gap-1 shrink-0">
                     <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
                     <span>{person.compatibility}% {t.matchLabel}</span>
@@ -109,23 +116,23 @@ export default function MatchesPage({
                 </div>
 
                 {/* "Why you matched" box */}
-                <div className="bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/70 dark:border-emerald-800 rounded-2xl p-3.5 mb-4">
-                  <span className="text-[11px] font-bold text-emerald-900 dark:text-emerald-300 uppercase tracking-wider block mb-1.5">
+                <div className="bg-emerald-50/70 dark:bg-emerald-950/30 border border-emerald-200/70 dark:border-emerald-800 rounded-2xl p-3.5 sm:p-4 mb-4">
+                  <span className="text-xs font-bold text-emerald-900 dark:text-emerald-300 uppercase tracking-wider block mb-2">
                     {t.whyMatched}
                   </span>
-                  <div className="space-y-1 text-xs text-emerald-950 dark:text-emerald-200 font-medium">
+                  <div className="space-y-1.5 text-xs sm:text-sm text-emerald-950 dark:text-emerald-200 font-medium">
                     {person.similarHabits.map((habit, idx) => (
-                      <div key={idx} className="flex items-center gap-1.5">
+                      <div key={idx} className="flex items-center gap-2">
                         <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0 stroke-[3]" />
-                        <span>{habit}</span>
+                        <span>{getLocalizedContent(habit, language)}</span>
                       </div>
                     ))}
                   </div>
                 </div>
 
                 {/* Bio quote */}
-                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-4 italic bg-slate-50 dark:bg-slate-800 p-3 rounded-2xl border border-slate-100 dark:border-slate-700">
-                  "{person.bio}"
+                <p className="text-sm text-slate-600 dark:text-slate-300 leading-relaxed mb-4 italic bg-slate-50 dark:bg-slate-800 p-3.5 rounded-2xl border border-slate-100 dark:border-slate-700">
+                  "{getLocalizedField(person, 'bio', language)}"
                 </p>
 
                 {/* Badges */}
@@ -133,49 +140,51 @@ export default function MatchesPage({
                   {person.badges.map((b, i) => (
                     <span
                       key={i}
-                      className="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-slate-700"
+                      className="px-2.5 py-1 rounded-lg text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-slate-700"
                     >
-                      {b}
+                      {getLocalizedContent(b, language)}
                     </span>
                   ))}
                 </div>
               </div>
 
               {/* Action buttons */}
-              <div className="pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
-                <button
-                  onClick={() => onToggleFavorite(person.id)}
-                  className={`p-2 rounded-xl border transition cursor-pointer ${
-                    isFavorite
-                      ? 'bg-rose-50 dark:bg-rose-950/40 border-rose-300 dark:border-rose-800 text-rose-600'
-                      : 'border-slate-200 dark:border-slate-800 text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
-                  }`}
-                  title="Save to favorites"
-                >
-                  <Heart className={`w-4 h-4 ${isFavorite ? 'fill-current' : ''}`} />
-                </button>
-
-                <div className="flex items-center gap-2">
+              <div className="pt-4 border-t border-slate-100 dark:border-slate-800 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5">
+                <div className="flex items-center justify-between sm:justify-start gap-2">
                   <button
-                    onClick={() => onSelectPerson(person)}
-                    className="px-3.5 py-2 text-xs font-bold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl transition cursor-pointer"
+                    onClick={() => onToggleFavorite(person.id)}
+                    className={`p-2.5 rounded-xl border transition cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center ${
+                      isFavorite
+                        ? 'bg-rose-50 dark:bg-rose-950/40 border-rose-300 dark:border-rose-800 text-rose-600'
+                        : 'border-slate-200 dark:border-slate-800 text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800'
+                    }`}
+                    title="Save to favorites"
                   >
-                    {t.viewProfile}
+                    <Heart className={`w-4 h-4 ${isFavorite ? 'fill-current' : ''}`} />
                   </button>
 
                   <button
-                    onClick={() => onTeamUp(person)}
-                    className="px-3 py-2 text-xs font-bold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950 hover:bg-blue-100 rounded-xl border border-blue-200 dark:border-blue-800 transition cursor-pointer flex items-center gap-1"
+                    onClick={() => onSelectPerson(person)}
+                    className="flex-1 sm:flex-initial min-h-[44px] px-4 py-2.5 text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-200 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl transition cursor-pointer flex items-center justify-center"
                   >
-                    <UserPlus className="w-3.5 h-3.5" />
+                    {t.viewProfile}
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-2 sm:flex items-center gap-2">
+                  <button
+                    onClick={() => onTeamUp(person)}
+                    className="min-h-[44px] px-3.5 py-2.5 text-xs sm:text-sm font-bold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950 hover:bg-blue-100 rounded-xl border border-blue-200 dark:border-blue-800 transition cursor-pointer flex items-center justify-center gap-1.5"
+                  >
+                    <UserPlus className="w-4 h-4" />
                     <span>{t.teamUp}</span>
                   </button>
 
                   <button
                     onClick={() => onStartChat(person)}
-                    className="px-4 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-sm transition cursor-pointer flex items-center gap-1.5"
+                    className="min-h-[44px] px-4 py-2.5 text-xs sm:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-xl shadow-sm transition cursor-pointer flex items-center justify-center gap-1.5"
                   >
-                    <MessageSquare className="w-3.5 h-3.5" />
+                    <MessageSquare className="w-4 h-4" />
                     <span>{t.message}</span>
                   </button>
                 </div>

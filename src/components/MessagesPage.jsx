@@ -52,20 +52,24 @@ const SAFETY_REMINDER = {
 
 function FlaggedMessageBubble({ text, language }) {
   const [revealed, setRevealed] = useState(false);
-  const t = TRANSLATIONS[language] || TRANSLATIONS.en;
+  const copy = {
+    en: { warning: 'Potential spam message — click to reveal', hide: 'Hide', show: 'Reveal' },
+    ro: { warning: 'Mesaj posibil spam — faceți clic pentru a-l vedea', hide: 'Ascunde', show: 'Arată' },
+    ru: { warning: 'Возможный спам — нажмите, чтобы просмотреть', hide: 'Скрыть', show: 'Показать' },
+  }[language] || { warning: 'Potential spam message — click to reveal', hide: 'Hide', show: 'Reveal' };
 
   return (
     <div className="max-w-md rounded-2xl border border-amber-300 dark:border-amber-600 bg-amber-50 dark:bg-amber-950/60 overflow-hidden">
       <div className="px-3.5 py-2.5 flex items-center gap-2">
         <Eye className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 shrink-0" />
         <span className="text-[11px] font-bold text-amber-700 dark:text-amber-300">
-          Mesaj posibil spam — faceți clic pentru a-l vedea
+          {copy.warning}
         </span>
         <button
           onClick={() => setRevealed(v => !v)}
           className="ml-auto text-[10px] font-bold text-amber-600 dark:text-amber-400 underline cursor-pointer"
         >
-          {revealed ? 'Ascunde' : 'Arată'}
+          {revealed ? copy.hide : copy.show}
         </button>
       </div>
       <div className={`px-3.5 pb-3 text-xs text-slate-700 dark:text-slate-300 transition-all ${revealed ? '' : 'blur-sm select-none'}`}>
@@ -75,11 +79,42 @@ function FlaggedMessageBubble({ text, language }) {
   );
 }
 
+// ─── Contextual Demo Auto-Reply Helper ────────────────────────────────────────
+
+function getContextualReply(userMessage, person) {
+  const lower = (userMessage || '').toLowerCase();
+  const personName = person?.name ? person.name.split(' ')[0] : 'coleg';
+  const personDistrict = person?.district || 'Chișinău';
+  const personOccupation = person?.occupation || 'student';
+  const personUniversity = person?.university ? ` la ${person.university}` : '';
+  const budget = person?.budgetFormatted || `${person?.budgetMin || 200}-${person?.budgetMax || 250}€`;
+
+  if (lower.includes('vizionare') || lower.includes('vizit') || lower.includes('vedem') || lower.includes('întâln')) {
+    return 'Salutare! Când ești disponibil să mergem împreună la o vizionare cu proprietarul?';
+  }
+
+  if (lower.includes('buget') || lower.includes('pret') || lower.includes('preț') || lower.includes('euro') || lower.includes('cost')) {
+    return `Perfect! Bugetul meu e în jur de ${budget}, crezi că ne încadrăm cu utilitățile?`;
+  }
+
+  if (lower.includes('apartament') || lower.includes('chirie') || lower.includes('camer') || lower.includes('garsonier')) {
+    return 'Salut! Da, apartamentul arată foarte bine, chiar căutam pe cineva serios să împărțim chiria.';
+  }
+
+  if (lower.includes('sector') || lower.includes('district') || lower.includes('zona') || lower.includes('zonă') || lower.includes('botanica') || lower.includes('centru') || lower.includes('buiucani') || lower.includes('rîșcani') || lower.includes('ciocana') || lower.includes('telecentru') || lower.includes('poșta veche')) {
+    return `Salut! Pentru mine zona ${personDistrict} este ideală pentru transport și activitățile mele zilnice. Tu în ce sector cauți cel mai mult?`;
+  }
+
+  // Fallback: warm friendly response introducing their personality / study
+  return `Salut! Eu sunt ${personName}. Sunt ${personOccupation.toLowerCase()}${personUniversity}. Pun mare preț pe curățenie, respect și o atmosferă liniștită acasă. Hai să povestim mai multe detalii! 😊`;
+}
+
 // ─── Main Component ───────────────────────────────────────────────────────────
 
 export default function MessagesPage({
   onSelectPerson,
   activeChatPersonId,
+  chatApartmentContext,
   onSelectApartment,
   onOpenReport,
   language = 'en'
@@ -87,11 +122,30 @@ export default function MessagesPage({
   const t = TRANSLATIONS[language] || TRANSLATIONS.en;
   const [conversations, setConversations] = useState(INITIAL_CONVERSATIONS);
   const [selectedConvId, setSelectedConvId] = useState(INITIAL_CONVERSATIONS[0].id);
-  const [inputText, setInputText] = useState('');
+
+  // Compute prefill message if navigating from an apartment context
+  const getApartmentPrefill = (context, currentLang = language) => {
+    if (!context) return '';
+    const apt = context.apartment || context;
+    const district = apt.district || 'Chișinău';
+    const address = apt.address || apt.title || '';
+    const template = (TRANSLATIONS[currentLang] || TRANSLATIONS.en)?.chatApartmentPrefill ||
+      "Salut! Am văzut că ești interesat de apartamentul din {district} ({address}). Crezi că ne potrivim să împărțim chiria?";
+    return template.replace('{district}', district).replace('{address}', address);
+  };
+
+  const [inputText, setInputText] = useState(() => getApartmentPrefill(chatApartmentContext, language));
   const [mobileChatOpen, setMobileChatOpen] = useState(false);
   const [safetyAlert, setSafetyAlert] = useState(null);       // { severity, reason, category, matchedKeyword }
   const [sentTexts, setSentTexts] = useState([]);             // all my sent raw texts (for spam detection)
   const messagesEndRef = useRef(null);
+
+  // Sync prefill text whenever chatApartmentContext, activeChatPersonId, or language changes
+  useEffect(() => {
+    if (chatApartmentContext) {
+      setInputText(getApartmentPrefill(chatApartmentContext, language));
+    }
+  }, [chatApartmentContext, activeChatPersonId, language]);
 
   // ── Scroll to bottom on new messages ──
   useEffect(() => {
@@ -195,12 +249,13 @@ export default function MessagesPage({
 
     setInputText('');
 
-    // Auto-reply after 1.5s
+    // Contextual auto-reply after 1200ms
     setTimeout(() => {
+      const autoReplyText = getContextualReply(trimmed, activePerson);
       const autoReply = {
         id: `reply-${Date.now()}`,
         sender: activePerson.id,
-        text: 'Mulțumesc pentru mesaj! Sună bine. Hai să vorbim mai multe detalii! 😊',
+        text: autoReplyText,
         time: 'Acum',
         flagged: false,
       };
@@ -215,7 +270,7 @@ export default function MessagesPage({
         }
         return conv;
       }));
-    }, 1500);
+    }, 1200);
   };
 
   const QUICK_TEMPLATES = [
@@ -225,15 +280,15 @@ export default function MessagesPage({
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8 py-2 sm:py-6">
 
       {/* MESSENGER CONTAINER */}
-      <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl shadow-sm overflow-hidden flex h-[calc(100vh-140px)] min-h-[580px]">
+      <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-2xl sm:rounded-3xl shadow-sm overflow-hidden flex h-[calc(100dvh-130px)] sm:h-[calc(100vh-140px)] min-h-[460px] sm:min-h-[580px]">
 
         {/* ── LEFT: CONVERSATIONS LIST ── */}
         <div className={`w-full md:w-80 lg:w-96 border-r border-slate-200 dark:border-slate-800 flex flex-col bg-slate-50/50 dark:bg-slate-900/60 ${mobileChatOpen ? 'hidden md:flex' : 'flex'}`}>
 
-          <div className="p-4 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+          <div className="p-3.5 sm:p-4 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
             <h2 className="text-base font-extrabold text-slate-900 dark:text-white">
               {t.conversationsTitle || 'Conversații'}
             </h2>
@@ -254,16 +309,16 @@ export default function MessagesPage({
                 <div
                   key={conv.id}
                   onClick={() => { setSelectedConvId(conv.id); setMobileChatOpen(true); setSafetyAlert(null); }}
-                  className={`p-3.5 flex items-center gap-3 cursor-pointer transition ${isSelected ? 'bg-blue-50/80 dark:bg-blue-950/60 border-l-4 border-blue-600' : 'hover:bg-slate-100/60 dark:hover:bg-slate-800/60'}`}
+                  className={`p-3 sm:p-3.5 flex items-center gap-3 cursor-pointer transition min-h-[64px] ${isSelected ? 'bg-blue-50/80 dark:bg-blue-950/60 border-l-4 border-blue-600' : 'hover:bg-slate-100/60 dark:hover:bg-slate-800/60'}`}
                 >
                   <div className="relative shrink-0">
-                    <img src={person.avatar} alt={person.name} className="w-12 h-12 rounded-full object-cover border border-slate-200 dark:border-slate-700" />
-                    <span className="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full" />
+                    <img src={person.avatar} alt={person.name} className="w-11 h-11 sm:w-12 sm:h-12 rounded-full object-cover border border-slate-200 dark:border-slate-700" />
+                    <span className="absolute bottom-0 right-0 w-2.5 h-2.5 sm:w-3 sm:h-3 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between mb-0.5">
                       <span className="font-bold text-slate-900 dark:text-white text-xs sm:text-sm truncate">{person.name}</span>
-                      <span className="text-[10px] text-slate-400 font-medium">{conv.time}</span>
+                      <span className="text-[10px] text-slate-400 font-medium shrink-0 ml-1">{conv.time}</span>
                     </div>
                     <div className="flex items-center gap-1.5 mb-1">
                       <span className="text-[10px] font-bold text-blue-700 dark:text-blue-300 bg-blue-100 dark:bg-blue-900/40 px-1.5 py-px rounded">{person.district}</span>
@@ -281,16 +336,18 @@ export default function MessagesPage({
         <div className={`flex-1 flex flex-col bg-white dark:bg-slate-900 ${!mobileChatOpen ? 'hidden md:flex' : 'flex'}`}>
 
           {/* CHAT HEADER */}
-          <div className="p-3.5 px-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-white dark:bg-slate-900">
-            <div className="flex items-center gap-3">
+          <div className="p-2.5 sm:p-3.5 px-3 sm:px-5 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-white dark:bg-slate-900 shrink-0">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0">
               <button
                 onClick={() => setMobileChatOpen(false)}
-                className="md:hidden p-1 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800"
+                className="md:hidden flex items-center gap-1 min-h-[44px] px-2 py-1 -ml-1 rounded-xl text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950 font-bold text-xs cursor-pointer shrink-0"
+                aria-label="Back to conversations"
               >
-                <ArrowLeft className="w-5 h-5" />
+                <ArrowLeft className="w-4 h-4 shrink-0" />
+                <span className="text-xs font-bold">{language === 'ro' ? 'Conversații' : language === 'ru' ? 'Назад' : 'Back'}</span>
               </button>
-              <div className="relative">
-                <img src={activePerson.avatar} alt={activePerson.name} className="w-10 h-10 rounded-full object-cover border border-slate-200 dark:border-slate-700" />
+              <div className="relative shrink-0">
+                <img src={activePerson.avatar} alt={activePerson.name} className="w-9 h-9 sm:w-10 sm:h-10 rounded-full object-cover border border-slate-200 dark:border-slate-700" />
                 <span className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-white dark:border-slate-900 rounded-full" />
               </div>
               <div>
@@ -353,7 +410,7 @@ export default function MessagesPage({
             <div className="max-w-md mx-auto bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl p-3 text-center shadow-xs">
               <div className="text-xs font-bold text-slate-800 dark:text-white flex items-center justify-center gap-1">
                 <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Compatibilitate {activePerson.compatibility}% cu {activePerson.name}</span>
+                <span>{t.matchedNotice ? `${t.matchedNotice} ${activePerson.compatibility}% (${activePerson.name})` : `Compatibilitate ${activePerson.compatibility}% cu ${activePerson.name}`}</span>
               </div>
               <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5">
                 {activePerson.similarHabits?.join(' • ')}
@@ -404,19 +461,19 @@ export default function MessagesPage({
           </div>
 
           {/* MESSAGE INPUT FORM */}
-          <div className="p-3 px-4 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center gap-2">
+          <div className="p-2.5 sm:p-3 px-3 sm:px-4 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 flex items-center gap-2 shrink-0">
             <input
               type="text"
               value={inputText}
               onChange={(e) => setInputText(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSendMessage()}
               placeholder={t.typeMessagePlaceholder || 'Scrie un mesaj…'}
-              className="flex-1 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-xs sm:text-sm font-medium text-slate-900 dark:text-white outline-none focus:border-blue-600 focus:bg-white dark:focus:bg-slate-800"
+              className="flex-1 min-h-[44px] bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-3.5 sm:px-4 py-2.5 text-xs sm:text-sm font-medium text-slate-900 dark:text-white outline-none focus:border-blue-600 focus:bg-white dark:focus:bg-slate-800"
             />
             <button
               onClick={() => handleSendMessage()}
-              className="p-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white shadow-sm transition cursor-pointer shrink-0"
-              title="Trimite"
+              className="min-h-[44px] min-w-[44px] p-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white shadow-sm transition cursor-pointer shrink-0 flex items-center justify-center"
+              title={t.sendMessage || 'Trimite'}
             >
               <Send className="w-4 h-4" />
             </button>

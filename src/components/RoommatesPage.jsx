@@ -4,7 +4,7 @@ import {
   Euro, ShieldCheck, Check, MessageSquare, ArrowUpDown, 
   RotateCcw, SlidersHorizontal, Home, UserPlus, Info, X
 } from 'lucide-react';
-import { DISTRICTS, ROOMMATES, TRANSLATIONS } from '../data/mockData';
+import { DISTRICTS, ROOMMATES, TRANSLATIONS, getLocalizedContent, getLocalizedField } from '../data/mockData';
 
 export default function RoommatesPage({
   roommatesList = ROOMMATES,
@@ -463,27 +463,27 @@ export default function RoommatesPage({
                 return (
                   <div
                     key={roommate.id}
-                    className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl p-5 shadow-sm hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition duration-200 flex flex-col sm:flex-row gap-5 relative group"
+                    className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl p-5 sm:p-6 shadow-sm hover:border-slate-300 dark:hover:border-slate-700 hover:shadow-md transition duration-200 flex flex-col sm:flex-row gap-5 relative group"
                   >
                     {/* LEFT: PHOTO + VERIFICATION */}
                     <div 
                       onClick={() => onSelectRoommate(roommate)}
-                      className="sm:w-44 shrink-0 flex flex-col items-center cursor-pointer"
+                      className="w-full sm:w-44 shrink-0 flex flex-col items-center cursor-pointer"
                     >
-                      <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700">
+                      <div className="relative w-28 h-28 sm:w-36 sm:h-36 rounded-2xl overflow-hidden bg-slate-100 dark:bg-slate-800 border-2 border-slate-200/80 dark:border-slate-700 shadow-sm">
                         <img
                           src={roommate.avatar}
                           alt={roommate.name}
                           className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
                         />
-                        <div className="absolute bottom-2 left-2 px-2 py-0.5 rounded-full text-[10px] font-bold bg-white/95 dark:bg-slate-900/95 text-blue-700 dark:text-blue-400 shadow-sm flex items-center gap-1">
+                        <div className="absolute bottom-2 left-2 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-white/95 dark:bg-slate-900/95 text-blue-700 dark:text-blue-400 shadow-sm flex items-center gap-1">
                           <ShieldCheck className="w-3 h-3 text-blue-600" />
                           <span>{t.verifiedResident}</span>
                         </div>
                       </div>
 
                       <div className="mt-2.5 text-center">
-                        <span className={`inline-block px-2.5 py-0.5 rounded-lg text-[10px] font-bold ${
+                        <span className={`inline-block px-2.5 py-0.5 rounded-lg text-xs font-bold ${
                           roommate.apartmentStatus === 'has_apartment'
                             ? 'bg-emerald-50 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800'
                             : roommate.apartmentStatus === 'wants_teamup'
@@ -500,37 +500,37 @@ export default function RoommatesPage({
                       <div>
                         
                         {/* Top bar: Name, Age, Location, Compatibility & Heart */}
-                        <div className="flex items-start justify-between gap-3 mb-1.5">
-                          <div>
-                            <div className="flex items-center gap-2">
+                        <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 mb-2.5">
+                          <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+                            <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
                               <h3 
                                 onClick={() => onSelectRoommate(roommate)}
-                                className="font-extrabold text-slate-900 dark:text-white text-lg hover:text-blue-600 dark:hover:text-blue-400 transition cursor-pointer"
+                                className="font-extrabold text-slate-900 dark:text-white text-xl sm:text-lg hover:text-blue-600 dark:hover:text-blue-400 transition cursor-pointer"
                               >
                                 {roommate.name}, {roommate.age}
                               </h3>
-                              <span className="text-slate-300 dark:text-slate-700">•</span>
-                              <div className="flex items-center gap-1 text-slate-500 dark:text-slate-400 text-xs font-semibold">
+                              <span className="hidden sm:inline text-slate-300 dark:text-slate-700">•</span>
+                              <div className="inline-flex items-center gap-1 px-2.5 py-1 sm:px-0 sm:py-0 rounded-full sm:rounded-none bg-slate-100 sm:bg-transparent dark:bg-slate-800 sm:dark:bg-transparent text-slate-700 dark:text-slate-300 sm:text-slate-500 sm:dark:text-slate-400 text-xs font-semibold">
                                 <MapPin className="w-3.5 h-3.5 text-blue-600" />
-                                <span>{roommate.district}</span>
+                                <span>{getLocalizedContent(roommate.district, language)}</span>
                               </div>
                             </div>
-                            <div className="text-xs text-slate-500 dark:text-slate-400 font-medium">
-                              {roommate.occupation}
+                            <div className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium mt-0.5">
+                              {getLocalizedContent(roommate.occupation, language)}
                             </div>
                           </div>
 
-                          <div className="flex items-center gap-2 shrink-0">
+                          <div className="flex items-center justify-center gap-2 shrink-0">
                             {/* Compatibility Badge */}
-                            <div className="px-2.5 py-1 rounded-full text-xs font-black bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 flex items-center gap-1">
-                              <Sparkles className="w-3 h-3 text-emerald-600" />
+                            <div className="px-3 py-1 rounded-full text-xs font-black bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300 flex items-center gap-1">
+                              <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
                               <span>{roommate.compatibility}% {t.matchLabel}</span>
                             </div>
 
                             {/* Save Heart */}
                             <button
                               onClick={() => onToggleFavorite(roommate.id)}
-                              className={`p-2 rounded-xl border transition cursor-pointer ${
+                              className={`p-2.5 rounded-xl border transition cursor-pointer min-h-[44px] min-w-[44px] flex items-center justify-center ${
                                 isFavorite
                                   ? 'bg-rose-50 dark:bg-rose-950/40 border-rose-200 dark:border-rose-800 text-rose-600'
                                   : 'border-slate-200 dark:border-slate-800 text-slate-400 hover:text-rose-500 hover:bg-slate-50 dark:hover:bg-slate-800'
@@ -543,45 +543,45 @@ export default function RoommatesPage({
                         </div>
 
                         {/* Headline */}
-                        <p className="text-sm font-bold text-slate-800 dark:text-slate-200 mb-2">
-                          "{roommate.headline}"
+                        <p className="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-2.5 leading-relaxed text-center sm:text-left italic sm:not-italic">
+                          "{getLocalizedField(roommate, 'headline', language)}"
                         </p>
 
                         {/* Budget & Move-in strip */}
-                        <div className="flex flex-wrap items-center gap-4 text-xs font-semibold text-slate-600 dark:text-slate-300 mb-3 bg-slate-50 dark:bg-slate-800 p-2.5 rounded-2xl border border-slate-100 dark:border-slate-700">
-                          <div className="flex items-center gap-1 text-slate-900 dark:text-white font-bold">
+                        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-3 sm:gap-4 text-xs sm:text-sm font-semibold text-slate-600 dark:text-slate-300 mb-3 bg-slate-50 dark:bg-slate-800 p-3 rounded-2xl border border-slate-100 dark:border-slate-700">
+                          <div className="flex items-center gap-1.5 text-slate-900 dark:text-white font-bold">
                             <span className="text-slate-400 font-medium">{t.budgetMonthly}:</span>
                             <span className="text-blue-700 dark:text-blue-400">{roommate.budgetFormatted}</span>
                           </div>
-                          <span className="text-slate-300 dark:text-slate-700">|</span>
-                          <div className="flex items-center gap-1">
+                          <span className="text-slate-300 dark:text-slate-700 hidden sm:inline">|</span>
+                          <div className="flex items-center gap-1.5">
                             <Calendar className="w-3.5 h-3.5 text-slate-400" />
                             <span>{t.moveInLabel} <strong className="text-slate-800 dark:text-slate-100">{roommate.moveInDate}</strong></span>
                           </div>
                         </div>
 
                         {/* Badges */}
-                        <div className="flex flex-wrap gap-1.5 mb-3">
+                        <div className="flex flex-wrap justify-center sm:justify-start gap-1.5 mb-3">
                           {roommate.badges.map((badge, idx) => (
                             <span
                               key={idx}
-                              className="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-slate-700"
+                              className="px-2.5 py-1 rounded-lg text-xs sm:text-sm font-semibold bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200/60 dark:border-slate-700"
                             >
-                              {badge}
+                              {getLocalizedContent(badge, language)}
                             </span>
                           ))}
                         </div>
 
                         {/* Similar habits */}
-                        <div className="text-[11px] text-slate-600 dark:text-slate-300 mb-4 bg-emerald-50/60 dark:bg-emerald-950/30 border border-emerald-200/60 dark:border-emerald-900/60 rounded-2xl p-2.5">
-                          <span className="font-bold text-emerald-800 dark:text-emerald-300 block mb-1">
+                        <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-4 bg-emerald-50/60 dark:bg-emerald-950/30 border border-emerald-200/60 dark:border-emerald-900/60 rounded-2xl p-3">
+                          <span className="font-bold text-emerald-800 dark:text-emerald-300 block mb-1.5">
                             {t.similarHabits}
                           </span>
-                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1 text-slate-700 dark:text-slate-300">
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 text-slate-700 dark:text-slate-300">
                             {roommate.similarHabits.map((habit, i) => (
-                              <div key={i} className="flex items-center gap-1 text-emerald-900 dark:text-emerald-300">
+                              <div key={i} className="flex items-center gap-1.5 text-emerald-900 dark:text-emerald-300">
                                 <span className="text-emerald-600 font-bold">✓</span>
-                                <span>{habit}</span>
+                                <span>{getLocalizedContent(habit, language)}</span>
                               </div>
                             ))}
                           </div>
@@ -590,32 +590,32 @@ export default function RoommatesPage({
                       </div>
 
                       {/* ACTION BUTTONS */}
-                      <div className="flex flex-wrap items-center justify-between gap-3 pt-3 border-t border-slate-100 dark:border-slate-800">
-                        <div className="text-[11px] text-slate-400">
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-3 border-t border-slate-100 dark:border-slate-800">
+                        <div className="text-xs text-slate-400 text-center sm:text-left">
                           {t.languagesLabel}: {roommate.languages.join(", ")}
                         </div>
 
-                        <div className="flex items-center gap-2">
+                        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 w-full sm:w-auto">
                           <button
                             onClick={() => onSelectRoommate(roommate)}
-                            className="px-3.5 py-2 text-xs font-bold text-slate-700 dark:text-slate-200 hover:text-slate-900 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl transition cursor-pointer"
+                            className="w-full sm:w-auto min-h-[44px] px-4 py-2.5 text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-200 hover:text-slate-900 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-xl transition cursor-pointer flex items-center justify-center"
                           >
                             {t.viewProfile}
                           </button>
 
                           <button
                             onClick={() => onTeamUp(roommate)}
-                            className="px-3 py-2 text-xs font-bold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950 hover:bg-blue-100 rounded-xl border border-blue-200 dark:border-blue-800 transition cursor-pointer flex items-center gap-1"
+                            className="w-full sm:w-auto min-h-[44px] px-4 py-2.5 text-xs sm:text-sm font-bold text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950 hover:bg-blue-100 rounded-xl border border-blue-200 dark:border-blue-800 transition cursor-pointer flex items-center justify-center gap-1"
                           >
-                            <UserPlus className="w-3.5 h-3.5" />
+                            <UserPlus className="w-4 h-4" />
                             <span>{t.teamUp}</span>
                           </button>
 
                           <button
                             onClick={() => onStartChat(roommate)}
-                            className="px-4 py-2 text-xs font-bold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-xl shadow-sm transition cursor-pointer flex items-center gap-1.5"
+                            className="w-full sm:w-auto min-h-[44px] px-4 py-2.5 text-xs sm:text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 active:bg-blue-800 rounded-xl shadow-sm transition cursor-pointer flex items-center justify-center gap-1.5"
                           >
-                            <MessageSquare className="w-3.5 h-3.5" />
+                            <MessageSquare className="w-4 h-4" />
                             <span>{t.message}</span>
                           </button>
                         </div>
